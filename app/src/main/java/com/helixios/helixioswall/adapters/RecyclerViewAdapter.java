@@ -21,14 +21,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return if (hasExtraRow()) {
-            super.getItemCount() + 1
-        } else {
-            super.getItemCount()
-        };
+        return 15;
+//        return if (hasExtraRow()) {
+//            super.getItemCount() + 1
+//        } else {
+//            super.getItemCount()
+//        };
     }
 
     private boolean hasExtraRow() {
+        return false;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/src/main/res/drawable-xxhdpi/andro_test_bg.jpg
+/app/src/main/res/drawable-ldpi/andro_bg_2.jpg

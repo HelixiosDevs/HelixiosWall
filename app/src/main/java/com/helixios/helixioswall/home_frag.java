@@ -74,7 +74,7 @@ public class home_frag extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView = getView().findViewById(R.id.recycler_view_home);
-        mLayoutManager = new GridLayoutManager(this,3);
+        mLayoutManager = new GridLayoutManager(getActivity(),3);
         mRecyclerView.setLayoutManager(mLayoutManager);
     }
 }
