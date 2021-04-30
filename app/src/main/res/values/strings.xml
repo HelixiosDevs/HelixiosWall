@@ -5,6 +5,22 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+
+    <string name="cat_helix">HELIXIOS exclusive</string>
+    <string name="cat_mirage">MIRAGE exclusive</string>
+    <string name="cat_land">LANDSCAPE adjusted</string>
+    <string name="cat_forza">FORZA</string>
+    <string name="cat_track">TRACKMANIA</string>
+    <string name="cat_bord">BORDERLANDS</string>
+    <string name="cat_ds">DEATH STRANDING</string>
+    <string name="cat_nier">NIER:AUTOMATA</string>
+    <string name="cat_watdg">WATCH_DOGS</string>
+    <string name="cat_jc">JUST CAUSE</string>
+    <string name="cat_half">HALF-LIFE</string>
+    <string name="cat_insi">INSIDE</string>
+    <string name="cat_title">CATEGORIES</string>
+
+    
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

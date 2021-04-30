@@ -22,7 +22,7 @@
         android:foreground="@color/start_back"
         android:layout_gravity="center"
         android:scaleType="centerCrop"
-        android:src="@drawable/andro_bg_2" />
+        android:src="@drawable/background" />
 
     <ImageView
             android:id="@+id/logo_1"

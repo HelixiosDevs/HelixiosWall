@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.helixios.helixioswall.adapters.RecyclerViewAdapter;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link home_frag#newInstance} factory method to
@@ -76,5 +78,7 @@ public class home_frag extends Fragment {
         mRecyclerView = getView().findViewById(R.id.recycler_view_home);
         mLayoutManager = new GridLayoutManager(getActivity(),3);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        //mRecyclerView.setAdapter(new RecyclerViewAdapter());
     }
 }
