@@ -1,32 +1,58 @@
 package com.helixios.helixioswall.adapters;
 
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.helixios.helixioswall.R;
+import com.helixios.helixioswall.model.Photo;
+import com.helixios.helixioswall.model.SearchPhotos;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+    private Context mContext;
+    private ArrayList<Photo> mPhotos;
+
+    public RecyclerViewAdapter(Context context, ArrayList<Photo> photoList) {
+        mContext = context;
+        mPhotos = photoList;
+    }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_home_photos,parent,false);
+
+        return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        Photo currentPhoto = mPhotos.get(position);
 
+        String id = currentPhoto.getId();
+        String title = currentPhoto.getTitle();
+        String url_z = currentPhoto.getUrl_z();
+
+        Log.d("pix",id+"- is ID -"+title+"-is Title.");
+        Log.d("pix",url_z);
+        Picasso.get().load(url_z).placeholder(R.drawable.placeholder_heli).fit().centerCrop().into(holder.mImageView);
     }
 
     @Override
     public int getItemCount() {
-        return 15;
-//        return if (hasExtraRow()) {
-//            super.getItemCount() + 1
-//        } else {
-//            super.getItemCount()
-//        };
+        //Log.i("foto1", String.valueOf((mPhotos.size())));
+        return mPhotos.size();
     }
 
     private boolean hasExtraRow() {
@@ -35,8 +61,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
+        public ImageView mImageView;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            mImageView = itemView.findViewById(R.id.item_home_imageView);
         }
     }
 }

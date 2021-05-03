@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="4dp">
 
-    <ImageView
-        android:id="@+id/item_home_imageView"
-        android:layout_width="108dp"
-        android:layout_height="192dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginBottom="3dp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="5dp"
-        android:layout_marginStart="15dp"
-        android:src="@drawable/placeholder_heli"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:layout_constraintDimensionRatio="w,16:9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/item_home_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/andro_bg_2" />
+
+    </androidx.cardview.widget.CardView>
+
+
+
+<!--    <ImageView-->
+<!--        android:id="@+id/item_home_imageView"-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="300dp"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:src="@drawable/andro_bg_2"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        />-->
+</androidx.constraintlayout.widget.ConstraintLayout >
