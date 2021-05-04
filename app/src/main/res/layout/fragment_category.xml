@@ -25,7 +25,11 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_height="15dp" />
+
+    <!-- Constraint Layout has been used to make the page responsive as the app may be used-->
+    <!-- on multiple sizes of displays and thus guidelines were added to contain the contents-->
+    <!-- within these boundaries. -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -516,7 +520,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.93" />
+            app:layout_constraintGuide_percent="0.96" />
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -524,7 +528,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.07" />
+            app:layout_constraintGuide_percent="0.04" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
