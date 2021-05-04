@@ -24,6 +24,7 @@ import com.helixios.helixioswall.networking.RetrofitClient;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -94,6 +95,8 @@ public class home_frag extends Fragment {
 
         FlickrApi flickrApi = RetrofitClient.getClient().create(FlickrApi.class);
         Call<SearchPhotos> call = flickrApi.getHomePhotos();
+        mAdapter = new RecyclerViewAdapter(getContext(),mPhotoList);
+        mRecyclerView.setAdapter(mAdapter);
 
         Log.d("call", String.valueOf(call.request()));
 
@@ -113,8 +116,9 @@ public class home_frag extends Fragment {
                 Log.d("foto", String.valueOf(foto.getPhotosNest().getPhotos_list().get(2).getUrl_z()));
                 mPhotoList.addAll(foto.getPhotosNest().getPhotos_list());
                 Log.i("foto", String.valueOf(mPhotoList.size()));
-                mAdapter = new RecyclerViewAdapter(getContext(),mPhotoList);
-                mRecyclerView.setAdapter(mAdapter);
+                Collections.shuffle(mPhotoList);
+                Log.d("foto5","working");
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override

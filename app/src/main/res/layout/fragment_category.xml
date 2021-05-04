@@ -1,279 +1,531 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".category_frag"
-    android:orientation="vertical"
     android:background="@color/start_back"
-    >
+    android:orientation="vertical"
+    android:scrollbars="vertical"
+    tools:context=".category_frag">
 
     <!-- TODO: Update blank fragment layout -->
     <Space
         android:layout_width="match_parent"
-        android:layout_height="20dp"/>
+        android:layout_height="20dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/cat_title"
-        android:textSize="17sp"
         android:layout_gravity="center"
+        android:fontFamily="@font/lemonmilk_reg"
+        android:text="@string/cat_title"
         android:textColor="@color/white"
-        />
+        android:textSize="22sp" />
+
     <Space
         android:layout_width="match_parent"
-        android:layout_height="20dp"/>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center">
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="@string/cat_helix"
-            android:fontFamily="@font/lemonmilk_reg"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:background="@drawable/helixios_bg"/>
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:textSize="20sp"
-            android:text="@string/cat_mirage"
-            android:fontFamily="@font/lemonmilk_reg"
-            android:background="@drawable/mirage_bg"
-            android:textColor="@color/white"
-            android:shadowColor="@color/black"
-            android:gravity="center"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center">
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="@string/cat_land"
-            android:fontFamily="@font/lemonmilk_reg"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:background="@drawable/landscape_bg"/>
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:textSize="20sp"
-            android:text="@string/cat_forza"
-            android:fontFamily="@font/lemonmilk_reg"
-            android:background="@drawable/forza_bg"
-            android:textColor="@color/white"
-            android:shadowColor="@color/black"
-            android:gravity="center"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center">
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="@string/cat_track"
-            android:elevation="8dp"
-            android:fontFamily="@font/lemonmilk_reg"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:background="@drawable/trackmania_bg"/>
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:textSize="20sp"
-            android:text="@string/cat_bord"
-            android:fontFamily="@font/lemonmilk_reg"
-            android:background="@drawable/borderlands_bg"
-            android:textColor="@color/white"
-            android:shadowColor="@color/black"
-            android:gravity="center"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center">
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="@string/cat_ds"
-            android:fontFamily="@font/lemonmilk_reg"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:background="@drawable/deathstr_bg"/>
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:textSize="20sp"
-            android:text="@string/cat_nier"
-            android:fontFamily="@font/lemonmilk_reg"
-            android:background="@drawable/nierauto_bg"
-            android:textColor="@color/white"
-            android:shadowColor="@color/black"
-            android:gravity="center"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center">
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="@string/cat_jc"
-            android:fontFamily="@font/lemonmilk_reg"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:background="@drawable/justcause_bg"/>
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"/>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="3dp"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/lemonmilk_reg"
-                android:textColor="@color/white"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:background="@drawable/justcause_bg"
-                android:text="@string/cat_jc"
-                android:shadowRadius="6"
-                android:shadowColor="#54000000"
-                android:shadowDx="0"
-                android:shadowDy="3"
-                android:layout_gravity="center"/>
-        </androidx.cardview.widget.CardView>
-<!--        <TextView-->
-<!--            android:layout_width="150dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:textSize="20sp"-->
-<!--            android:fontFamily="@font/lemonmilk_reg"-->
-<!--            android:text="@string/cat_jc"-->
-<!--            android:background="@drawable/justcause_bg"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:shadowColor="@color/black"-->
-<!--            android:gravity="center"/>-->
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center">
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="@string/cat_half"
-            android:fontFamily="@font/lemonmilk_reg"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:background="@drawable/halflife_bg"/>
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:textSize="20sp"
-            android:fontFamily="@font/lemonmilk_reg"
-            android:text="@string/cat_insi"
-            android:background="@drawable/inside_bg"
-            android:textColor="@color/white"
-            android:shadowColor="@color/black"
-            android:gravity="center"/>
-    </LinearLayout>
+        android:layout_height="20dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:gravity="center">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.07"/>
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/trackmania_bg"
-            android:gravity="center"
-            android:text="@string/cat_track"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_1"
-            app:layout_constraintStart_toStartOf="@id/guideline_2"
-            app:layout_constraintTop_toTopOf="parent"
-            android:fontFamily="@font/lemonmilk_reg"/>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5"/>
-
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constlay_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="h,3:1"
-            android:background="@drawable/borderlands_bg"
-            android:shadowRadius="6"
             android:gravity="center"
-            android:shadowColor="#000000"
-            android:shadowDy="3"
-            android:text="@string/cat_bord"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:layout_marginStart="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guideline_1"
-            app:layout_constraintEnd_toStartOf="@id/guideline_3"
-            app:layout_constraintTop_toTopOf="parent"
-            android:fontFamily="@font/lemonmilk_reg"/>
+            app:layout_constraintDimensionRatio="h,5:1"
+            app:layout_constraintEnd_toStartOf="@id/guidefull_3"
+            app:layout_constraintStart_toStartOf="@id/guidefull_1"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/catCard_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/helixios_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54000000"
+                    android:shadowDx="0"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_helix"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/catCard_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/mirage_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54000000"
+                    android:shadowDx="0"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_mirage"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+            </androidx.cardview.widget.CardView>
+            <!--        <TextView-->
+            <!--            android:layout_width="150dp"-->
+            <!--            android:layout_height="50dp"-->
+            <!--            android:textSize="20sp"-->
+            <!--            android:fontFamily="@font/lemonmilk_reg"-->
+            <!--            android:text="@string/cat_jc"-->
+            <!--            android:background="@drawable/justcause_bg"-->
+            <!--            android:textColor="@color/white"-->
+            <!--            android:shadowColor="@color/black"-->
+            <!--            android:gravity="center"/>-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constlay_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            app:layout_constraintDimensionRatio="h,5:1"
+            app:layout_constraintEnd_toStartOf="@id/guidefull_3"
+            app:layout_constraintStart_toStartOf="@id/guidefull_1"
+            app:layout_constraintTop_toBottomOf="@id/constlay_1">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/catCard_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/landscape_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54000000"
+                    android:shadowDx="0"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_land"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/catCard_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/forza_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54000000"
+                    android:shadowDx="0"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_forza"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constlay_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            app:layout_constraintDimensionRatio="h,5:1"
+            app:layout_constraintEnd_toStartOf="@id/guidefull_3"
+            app:layout_constraintStart_toStartOf="@id/guidefull_1"
+            app:layout_constraintTop_toBottomOf="@id/constlay_2">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/catCard_5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/trackmania_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54000000"
+                    android:shadowDx="0"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_track"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/catCard_6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/borderlands_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54000000"
+                    android:shadowDx="0"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_bord"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constlay_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            app:layout_constraintDimensionRatio="h,5:1"
+            app:layout_constraintEnd_toStartOf="@id/guidefull_3"
+            app:layout_constraintStart_toStartOf="@id/guidefull_1"
+            app:layout_constraintTop_toBottomOf="@id/constlay_3">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/catCard_7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/deathstr_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54000000"
+                    android:shadowDx="0"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_ds"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/catCard_8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/nierauto_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54000000"
+                    android:shadowDx="0"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_nier"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constlay_5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            app:layout_constraintDimensionRatio="h,5:1"
+            app:layout_constraintEnd_toStartOf="@id/guidefull_3"
+            app:layout_constraintStart_toStartOf="@id/guidefull_1"
+            app:layout_constraintTop_toBottomOf="@id/constlay_4">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/catCard_9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                android:clipChildren="true"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/watchdogs_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54000000"
+                    android:shadowDx="0"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_watdg"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/catCard_10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/justcause_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54000000"
+                    android:shadowDx="0"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_jc"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constlay_6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            app:layout_constraintDimensionRatio="h,5:1"
+            app:layout_constraintEnd_toStartOf="@id/guidefull_3"
+            app:layout_constraintStart_toStartOf="@id/guidefull_1"
+            app:layout_constraintTop_toBottomOf="@id/constlay_5">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/catCard_11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/halflife_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54000000"
+                    android:shadowDx="0"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_half"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/catCard_12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/inside_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54000000"
+                    android:shadowDx="0"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_insi"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constlay_7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            app:layout_constraintDimensionRatio="h,5:1"
+            app:layout_constraintEnd_toStartOf="@id/guidefull_3"
+            app:layout_constraintStart_toStartOf="@id/guidefull_1"
+            app:layout_constraintTop_toBottomOf="@id/constlay_6">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/catCard_13"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/control_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54000000"
+                    android:shadowDx="0"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_control"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </androidx.cardview.widget.CardView>
+
+            <!--            <androidx.cardview.widget.CardView-->
+            <!--                android:id="@+id/catCard_14"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:cardCornerRadius="5dp"-->
+            <!--                app:cardElevation="8dp"-->
+            <!--                app:layout_constraintDimensionRatio="w,3:1"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" >-->
+
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_gravity="center"-->
+            <!--                    android:background="@drawable/justcause_bg"-->
+            <!--                    android:fontFamily="@font/lemonmilk_reg"-->
+            <!--                    android:gravity="center"-->
+            <!--                    android:shadowColor="#54000000"-->
+            <!--                    android:shadowDx="0"-->
+            <!--                    android:shadowDy="3"-->
+            <!--                    android:shadowRadius="6"-->
+            <!--                    android:text="@string/cat_jc"-->
+            <!--                    android:textColor="@color/white"-->
+            <!--                    android:textSize="18sp" />-->
+            <!--            </androidx.cardview.widget.CardView>-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidefull_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/guideline_3"
-            app:layout_constraintGuide_percent="0.93"/>
+            app:layout_constraintGuide_percent="0.93" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidefull_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.07" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
