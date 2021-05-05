@@ -22,10 +22,12 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     private Context mContext;
     private ArrayList<Photo> mPhotos;
+    private OnPhotoListener mOnPhotoListener;
 
-    public RecyclerViewAdapter(Context context, ArrayList<Photo> photoList) {
+    public RecyclerViewAdapter(Context context, ArrayList<Photo> photoList, OnPhotoListener onPhotoListener) {
         mContext = context;
         mPhotos = photoList;
+        this.mOnPhotoListener = onPhotoListener;
     }
 
     @NonNull
@@ -33,7 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_home_photos,parent,false);
 
-        return new MyViewHolder(view);
+        return new MyViewHolder(view, mOnPhotoListener);
     }
 
     @Override
@@ -59,13 +61,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return false;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView mImageView;
+        public OnPhotoListener onPhotoListener;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, OnPhotoListener onPhotoListener) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.item_home_imageView);
+            this.onPhotoListener = onPhotoListener;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            onPhotoListener.onPhotoClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnPhotoListener {
+        void onPhotoClick(int position);
     }
 }

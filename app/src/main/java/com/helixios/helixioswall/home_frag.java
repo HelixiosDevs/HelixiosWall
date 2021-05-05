@@ -1,5 +1,7 @@
 package com.helixios.helixioswall;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,10 +13,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEventSource;
+import android.widget.ImageView;
 
 import com.helixios.helixioswall.adapters.RecyclerViewAdapter;
 import com.helixios.helixioswall.model.Photo;
@@ -25,6 +30,7 @@ import com.helixios.helixioswall.networking.RetrofitClient;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -32,7 +38,7 @@ import java.util.List;
  * Use the {@link home_frag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class home_frag extends Fragment {
+public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,6 +55,7 @@ public class home_frag extends Fragment {
     private List<SearchPhotos> mSearchPhotos;
     private SearchPhotos foto ;
     private ArrayList<Photo> mPhotoList;
+    private FlickrApi flickrApi;
 
     public home_frag() {
         // Required empty public constructor
@@ -81,9 +88,10 @@ public class home_frag extends Fragment {
         }
     }
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView (LayoutInflater inflater, ViewGroup container,
+                                                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -93,11 +101,10 @@ public class home_frag extends Fragment {
 
         mPhotoList = new ArrayList<>();
 
-        FlickrApi flickrApi = RetrofitClient.getClient().create(FlickrApi.class);
+        flickrApi = RetrofitClient.getClient().create(FlickrApi.class);
         Call<SearchPhotos> call = flickrApi.getHomePhotos();
-        mAdapter = new RecyclerViewAdapter(getContext(),mPhotoList);
+        mAdapter = new RecyclerViewAdapter(getContext(),mPhotoList,this);
         mRecyclerView.setAdapter(mAdapter);
-
         Log.d("call", String.valueOf(call.request()));
 
         call.enqueue(new Callback<SearchPhotos>() {
@@ -117,6 +124,7 @@ public class home_frag extends Fragment {
                 mPhotoList.addAll(foto.getPhotosNest().getPhotos_list());
                 Log.i("foto", String.valueOf(mPhotoList.size()));
                 Collections.shuffle(mPhotoList);
+                //Collections.sort(mPhotoList,compareByRatio);
                 Log.d("foto5","working");
                 mAdapter.notifyDataSetChanged();
             }
@@ -127,17 +135,35 @@ public class home_frag extends Fragment {
             }
         });
 
-
-        //Log.e("foto3", String.valueOf(mPhotoList.size()));
-        Log.i("foto3", String.valueOf(foto));
-
-
         return v;
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
     }
+
+    @Override
+    public void onPhotoClick(int position) {
+        Log.d("foto", "onPhotoClick: is working");
+        Intent intent = new Intent(getContext(), PhotoActivity.class);
+        intent.putExtra("photo", mPhotoList.get(position));
+        startActivity(intent);
+    }
+
+//This comparison is only working partially
+//    Comparator<Photo> compareByRatio = (p1, p2) -> {
+//        if (p1.getWidth_z()==0 ||p2.getWidth_z()==0)
+//            return 1;
+//        Log.d("cmp", String.valueOf(p1.getWidth_z())+"-"+String.valueOf(p1.getHeight_z()));
+//        double r1 = p1.getHeight_z()/p1.getWidth_z();
+//        double r2 = p2.getHeight_z()/p2.getWidth_z();
+//        if (r1>r2)
+//            return 1;
+//        else
+//            return 0;
+//    };
 }
+

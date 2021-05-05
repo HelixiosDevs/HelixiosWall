@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.helixios.helixioswall">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,12 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HelixiosWall">
+        <activity android:name=".PhotoActivity"
+            android:theme="@style/Theme.HelixiosWall.NoActionBar"
+            android:hardwareAccelerated="false"></activity>
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.HelixiosWall.NoActionBar"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.HelixiosWall.NoActionBar" />
         <activity
             android:name=".FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -29,5 +30,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

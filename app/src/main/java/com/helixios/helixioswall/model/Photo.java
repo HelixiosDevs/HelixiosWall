@@ -1,10 +1,13 @@
 package com.helixios.helixioswall.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.jetbrains.annotations.NotNull;
 
 import androidx.annotation.Nullable;
 
-public class Photo {
+public class Photo implements Parcelable {
     @Nullable
     private String id;
     @Nullable
@@ -69,6 +72,70 @@ public class Photo {
         this.owner_name = owner_name;
         this.tags = tags;
     }
+
+    protected Photo(Parcel in) {
+        id = in.readString();
+        owner = in.readString();
+        secret = in.readString();
+        server = in.readString();
+        if (in.readByte() == 0) {
+            farm = null;
+        } else {
+            farm = in.readInt();
+        }
+        title = in.readString();
+        if (in.readByte() == 0) {
+            ispublic = null;
+        } else {
+            ispublic = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            isfriend = null;
+        } else {
+            isfriend = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            isfamily = null;
+        } else {
+            isfamily = in.readInt();
+        }
+        datetaken = in.readString();
+        iconserver = in.readString();
+        if (in.readByte() == 0) {
+            iconfarm = null;
+        } else {
+            iconfarm = in.readInt();
+        }
+        originalsecret = in.readString();
+        originalformat = in.readString();
+        url_o = in.readString();
+        if (in.readByte() == 0) {
+            height_o = null;
+        } else {
+            height_o = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            width_o = null;
+        } else {
+            width_o = in.readInt();
+        }
+        height_z = in.readInt();
+        width_z = in.readInt();
+        owner_name = in.readString();
+        tags = in.readString();
+    }
+
+    public static final Creator<Photo> CREATOR = new Creator<Photo>() {
+        @Override
+        public Photo createFromParcel(Parcel in) {
+            return new Photo(in);
+        }
+
+        @Override
+        public Photo[] newArray(int size) {
+            return new Photo[size];
+        }
+    };
 
     @Nullable
     public String getId() {
@@ -175,5 +242,70 @@ public class Photo {
     @NotNull
     public final String getUrl_z() {
         return "https://farm" + this.farm + ".staticflickr.com/" + this.server + "/" + this.id + "_" + this.secret + ".jpg";
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(owner);
+        dest.writeString(secret);
+        dest.writeString(server);
+        if (farm == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(farm);
+        }
+        dest.writeString(title);
+        if (ispublic == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(ispublic);
+        }
+        if (isfriend == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(isfriend);
+        }
+        if (isfamily == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(isfamily);
+        }
+        dest.writeString(datetaken);
+        dest.writeString(iconserver);
+        if (iconfarm == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(iconfarm);
+        }
+        dest.writeString(originalsecret);
+        dest.writeString(originalformat);
+        dest.writeString(url_o);
+        if (height_o == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(height_o);
+        }
+        if (width_o == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(width_o);
+        }
+        dest.writeInt(height_z);
+        dest.writeInt(width_z);
+        dest.writeString(owner_name);
+        dest.writeString(tags);
     }
 }
