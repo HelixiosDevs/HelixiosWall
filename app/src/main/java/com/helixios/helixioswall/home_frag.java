@@ -109,6 +109,7 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
         mLayoutManager = new GridLayoutManager(getActivity(),3);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        //mPhotoList stores all the instances of Photos
         mPhotoList = new ArrayList<>();
 
         flickrApi = RetrofitClient.getClient().create(FlickrApi.class);

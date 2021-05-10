@@ -39,7 +39,7 @@ public class PhotoActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 100;
     String imageName = null;
     String down_url = null;
-    DownloadBroadcastReceiver downReceiver;
+    DownloadBroadcastReceiver downReceiver = null;
 
     enum Action{
         WALLPAPER,
@@ -84,7 +84,13 @@ public class PhotoActivity extends AppCompatActivity {
 
         getWindow().setSharedElementEnterTransition(new ChangeBounds().setDuration(1000));
 
-        url = photo.getUrl_z();
+        if (photo.getUrl_o()==null) {
+            //b type img is 1024px long edge(unrestricted best quality)
+            url = "https://farm" + photo.getFarm() + ".staticflickr.com/" + photo.getServer() + "/" + photo.getId() + "_" + photo.getSecret() + "_b.jpg";
+        }
+        else {
+            url = photo.getUrl_o();
+        }
         imageName = photo.getTitle()+photo.getId()+".jpg";
         Picasso.get().load(url).into(imageView, new Callback() {
             @Override
@@ -109,12 +115,7 @@ public class PhotoActivity extends AppCompatActivity {
         //getWindow().setSharedElementEnterTransition(new ChangeBounds().addTarget(imageView).setStartDelay(800).setDuration(1000));
 
 
-//        if (photo.getUrl_o()==null) {
-//            url = "https://farm" + photo.getFarm() + ".staticflickr.com/" + photo.getServer() + "/" + photo.getId() + "_" + photo.getSecret() + "_b.jpg";
-//        }
-//        else {
-//            url = photo.getUrl_o();
-//        }
+
 
         down_url = photo.getUrl_o();
         Log.d("foto", "onCreate:"+photo.getOwner_name());
@@ -122,7 +123,7 @@ public class PhotoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 downloadImage(url,imageName);
-                Toast.makeText(PhotoActivity.this,"Download maybe started",Toast.LENGTH_LONG);
+                Toast.makeText(PhotoActivity.this,"Download maybe started",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -136,19 +137,23 @@ public class PhotoActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        unregisterReceiver(downReceiver);
+    protected void onDestroy() {
+        super.onDestroy();
+        if(downReceiver != null){
+            unregisterReceiver(downReceiver);
+        }
     }
 
     public void setWallServe()
     {
         String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()+ File.separator + imageName;
+        Toast.makeText(this,"This works right ?",Toast.LENGTH_SHORT).show();
+//Moved this code to BroadcastReceiver to execute according to the download
 //        Uri uri = FileProvider.getUriForFile(this, "com.helixios.helixioswall.fileprovider", new File(path));
-//        Log.d("wall", uri.toString());
 //        Intent wallMan =WallpaperManager.getInstance(this).getCropAndSetWallpaperIntent(uri);
         try {
-            registerReceiver(new DownloadBroadcastReceiver(path), new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+            downReceiver = new DownloadBroadcastReceiver(path);
+            registerReceiver(downReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
         }
         catch (Exception e) {
             e.printStackTrace();

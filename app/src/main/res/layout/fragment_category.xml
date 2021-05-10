@@ -57,20 +57,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:background="@drawable/helixios_bg"-->
+<!--                    android:fontFamily="@font/lemonmilk_reg"-->
+<!--                    android:gravity="center"-->
+<!--                    android:shadowColor="#54000000"-->
+<!--                    android:shadowDx="0"-->
+<!--                    android:shadowDy="3"-->
+<!--                    android:shadowRadius="6"-->
+<!--                    android:text="@string/cat_helix"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="16sp" />-->
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:src="@drawable/helixios_cat"
                     android:background="@drawable/helixios_bg"
-                    android:fontFamily="@font/lemonmilk_reg"
-                    android:gravity="center"
-                    android:shadowColor="#54000000"
-                    android:shadowDx="0"
-                    android:shadowDy="3"
-                    android:shadowRadius="6"
-                    android:text="@string/cat_helix"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:foregroundGravity="center"
+                    android:scaleType="fitCenter"
+                    android:padding="14dp"/>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -84,20 +93,29 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:background="@drawable/mirage_bg"-->
+<!--                    android:fontFamily="@font/lemonmilk_reg"-->
+<!--                    android:gravity="center"-->
+<!--                    android:shadowColor="#54000000"-->
+<!--                    android:shadowDx="0"-->
+<!--                    android:shadowDy="3"-->
+<!--                    android:shadowRadius="6"-->
+<!--                    android:text="@string/cat_mirage"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="17sp" />-->
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:src="@drawable/mirage_cat"
                     android:background="@drawable/mirage_bg"
-                    android:fontFamily="@font/lemonmilk_reg"
-                    android:gravity="center"
-                    android:shadowColor="#54000000"
-                    android:shadowDx="0"
-                    android:shadowDy="3"
-                    android:shadowRadius="6"
-                    android:text="@string/cat_mirage"
-                    android:textColor="@color/white"
-                    android:textSize="17sp" />
+                    android:foregroundGravity="center"
+                    android:scaleType="fitCenter"
+                    android:padding="12dp"/>
             </androidx.cardview.widget.CardView>
             <!--        <TextView-->
             <!--            android:layout_width="150dp"-->
