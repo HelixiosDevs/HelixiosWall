@@ -1,12 +1,17 @@
 package com.helixios.helixioswall;
 
+import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
@@ -14,11 +19,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.os.Parcelable;
+import android.transition.ChangeBounds;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEventSource;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import com.helixios.helixioswall.adapters.RecyclerViewAdapter;
@@ -148,9 +158,34 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
     @Override
     public void onPhotoClick(int position) {
         Log.d("foto", "onPhotoClick: is working");
-        Intent intent = new Intent(getContext(), PhotoActivity.class);
+        ImageView imageView = getView().findViewById(R.id.item_home_imageView);
+        Intent intent = new Intent(imageView.getContext(), PhotoActivity.class);
         intent.putExtra("photo", mPhotoList.get(position));
-        startActivity(intent);
+
+        imageView.setTransitionName("sharedPhotoTransition"+mPhotoList.get(position).getId());
+        Log.d("foto8", imageView.getTransitionName());
+
+//        FragmentManager fragmentManager = getParentFragmentManager();
+//        FragmentTransaction fragTransaction = fragmentManager.beginTransaction();
+//        fragTransaction.addSharedElement(imageView, imageView.getTransitionName());
+//        fragTransaction.setReorderingAllowed(true);
+//        fragTransaction.replace(R.id.fragment_placeholder, fragment, VIEWPAGER_FRAGMENT);
+//        fragTransaction.addToBackStack(null);
+//        fragTransaction.commit();
+
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) imageView.getContext(),imageView,"sharedPhotoTransition"+mPhotoList.get(position).getId());
+//        Fade explode = new Fade();
+//        View decor = getActivity().getWindow().getDecorView();
+//        explode.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
+//        explode.excludeTarget(android.R.id.statusBarBackground, true);
+//        explode.excludeTarget(android.R.id.navigationBarBackground, true);
+//        explode.excludeTarget(imageView,true);
+//        explode.setDuration(1000);
+//        getActivity().getWindow().setEnterTransition(explode);
+//        getActivity().getWindow().setExitTransition(explode);
+
+        getActivity().getWindow().setSharedElementEnterTransition(new ChangeBounds().addTarget(imageView).setStartDelay(500).setDuration(1000));
+        ActivityCompat.startActivity(imageView.getContext(), intent,options.toBundle());
     }
 
 //This comparison is only working partially

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.helixios.helixioswall.ui.main.SectionsPagerAdapter;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ImageView logo = (ImageView) findViewById(R.id.logo_1);
+        //Picasso.get().load("https://farm66.staticflickr.com/65535/51157530838_c51d02b22b.jpg").into(logo);
 
         Fade fade = new Fade();
         View decor = getWindow().getDecorView();
