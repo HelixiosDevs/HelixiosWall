@@ -71,15 +71,73 @@
 <!--                    android:text="@string/cat_helix"-->
 <!--                    android:textColor="@color/white"-->
 <!--                    android:textSize="16sp" />-->
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/helixios_cat"
+<!--                -->
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/helixios_cat"-->
+<!--                    android:background="@drawable/helixios_bg"-->
+<!--                    android:foregroundGravity="center"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    android:padding="14dp"/>-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="@drawable/helixios_bg"
-                    android:foregroundGravity="center"
-                    android:scaleType="fitCenter"
-                    android:padding="14dp"/>
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="HELIXI"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/conthrax"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:shadowColor="#54000000"
+                            android:shadowDx="0"
+                            android:shadowDy="3"
+                            android:shadowRadius="6"/>
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/helixios_cat_logo" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="S"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/conthrax"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:shadowColor="#54000000"
+                            android:shadowDx="0"
+                            android:shadowDy="3"
+                            android:shadowRadius="6"
+                            />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="exclusive"
+                        android:textSize="12sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/lemonmilk_reg"
+                        android:shadowColor="#54000000"
+                        android:shadowDx="0"
+                        android:shadowDy="3"
+                        android:shadowRadius="6"/>
+
+
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -92,6 +150,51 @@
                 app:layout_constraintDimensionRatio="w,2.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/mirage_bg"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:src="@drawable/mirage_cat_logo"
+                        android:layout_gravity="right|center_vertical"
+                        />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mirage"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/lemonmilk_reg"
+                            android:textSize="16sp"
+                            android:shadowColor="#54000000"
+                            android:shadowDx="0"
+                            android:shadowDy="3"
+                            android:shadowRadius="6"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="exclusive"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/lemonmilk_reg"
+                            android:textSize="12sp"
+                            android:shadowColor="#54000000"
+                            android:shadowDx="0"
+                            android:shadowDy="3"
+                            android:shadowRadius="6"/>
+                    </LinearLayout>
+
+                </LinearLayout>
 
 <!--                <TextView-->
 <!--                    android:layout_width="wrap_content"-->
@@ -107,15 +210,15 @@
 <!--                    android:text="@string/cat_mirage"-->
 <!--                    android:textColor="@color/white"-->
 <!--                    android:textSize="17sp" />-->
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/mirage_cat"
-                    android:background="@drawable/mirage_bg"
-                    android:foregroundGravity="center"
-                    android:scaleType="fitCenter"
-                    android:padding="12dp"/>
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/mirage_cat"-->
+<!--                    android:background="@drawable/mirage_bg"-->
+<!--                    android:foregroundGravity="center"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    android:padding="12dp"/>-->
             </androidx.cardview.widget.CardView>
             <!--        <TextView-->
             <!--            android:layout_width="150dp"-->
