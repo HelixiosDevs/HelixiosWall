@@ -31,6 +31,8 @@ public class DownloadBroadcastReceiver extends BroadcastReceiver {
             //getCropAndSetWallpaperIntent takes the uri of an image and returns a runnable intent
             //that intent can be used to set wallpaper.
             Intent wallMan = WallpaperManager.getInstance(context).getCropAndSetWallpaperIntent(uri);
+            wallMan.setDataAndType(uri, "image/*");
+            wallMan.putExtra("mimeType", "image/*");
             context.startActivity(wallMan);
         }
     }

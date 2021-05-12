@@ -119,10 +119,10 @@ public class FullscreenActivity extends AppCompatActivity {
         fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
         fade.excludeTarget(android.R.id.statusBarBackground, true);
         fade.excludeTarget(android.R.id.navigationBarBackground, true);
-        fade.setDuration(1000);
+        fade.setDuration(1500);
         getWindow().setEnterTransition(fade);
         getWindow().setExitTransition(fade);
-        getWindow().setSharedElementEnterTransition(new ChangeBounds().setDuration(800));
+        getWindow().setSharedElementEnterTransition(new ChangeBounds().setDuration(500));
 
         //Set Internet listener here
 

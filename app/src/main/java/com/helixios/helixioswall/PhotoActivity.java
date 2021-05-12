@@ -23,6 +23,7 @@ import android.transition.Slide;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,11 +56,12 @@ public class PhotoActivity extends AppCompatActivity {
         postponeEnterTransition();
 
         ImageView imageView = findViewById(R.id.photo_full);
+        ImageView back_button = findViewById(R.id.back_button);
         TextView textView = findViewById(R.id.creator_photo_full);
-        FloatingActionButton setWallFab = findViewById(R.id.fab_wall);
-        FloatingActionButton downloadFab = findViewById(R.id.fab_download);
-        FloatingActionButton FaveFab = findViewById(R.id.fab_fave);
-        FloatingActionButton shareFab = findViewById(R.id.fab_share);
+        LinearLayout setWallClick = findViewById(R.id.wall_click);
+        LinearLayout downloadClick = findViewById(R.id.down_click);
+//        FloatingActionButton FaveFab = findViewById(R.id.fab_fave);
+//        FloatingActionButton shareFab = findViewById(R.id.fab_share);
         Photo photo = null;
         String url;
 
@@ -105,6 +107,9 @@ public class PhotoActivity extends AppCompatActivity {
                 Log.e("Error", e.getMessage() );
             }
         });
+
+        textView.setText("By "+photo.getOwner_name());
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE);
@@ -119,20 +124,18 @@ public class PhotoActivity extends AppCompatActivity {
 
         down_url = photo.getUrl_o();
         Log.d("foto", "onCreate:"+photo.getOwner_name());
-        downloadFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                downloadImage(url,imageName);
-                Toast.makeText(PhotoActivity.this,"Download maybe started",Toast.LENGTH_LONG).show();
-            }
+        downloadClick.setOnClickListener(v -> {
+            downloadImage(down_url,imageName);
+            Toast.makeText(PhotoActivity.this,"Download maybe started",Toast.LENGTH_LONG).show();
         });
 
-        setWallFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                downloadImage(down_url,imageName);
-                setWallServe();
-            }
+        setWallClick.setOnClickListener(v -> {
+            downloadImage(down_url,imageName);
+            setWallServe();
+        });
+
+        back_button.setOnClickListener(v ->{
+            finish();
         });
     }
 
@@ -147,6 +150,10 @@ public class PhotoActivity extends AppCompatActivity {
     public void setWallServe()
     {
         String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()+ File.separator + imageName;
+//        WallpaperManager wall= new WallpaperManager();
+//        if(wall.isSetWallpaperAllowed()) {
+//
+//        }
         Toast.makeText(this,"This works right ?",Toast.LENGTH_SHORT).show();
 //Moved this code to BroadcastReceiver to execute according to the download
 //        Uri uri = FileProvider.getUriForFile(this, "com.helixios.helixioswall.fileprovider", new File(path));
