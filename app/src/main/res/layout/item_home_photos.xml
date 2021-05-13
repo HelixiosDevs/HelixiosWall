@@ -4,9 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
-    android:focusable="true"
-    android:background="?attr/selectableItemBackgroundBorderless"
     >
     <androidx.cardview.widget.CardView
         android:id="@+id/home_card_view"
@@ -18,7 +15,8 @@
         android:layout_margin="-10dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:layout_constraintDimensionRatio="w,16:9"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:layout_constraintDimensionRatio="w,18:9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,9 +26,7 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:layout_gravity="center"
-            android:elevation="6dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-             />
+            android:elevation="6dp" />
 
     </androidx.cardview.widget.CardView>
 

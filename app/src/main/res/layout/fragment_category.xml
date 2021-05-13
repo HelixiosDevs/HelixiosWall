@@ -97,22 +97,27 @@
                             android:text="HELIXI"
                             android:textColor="@color/white"
                             android:fontFamily="@font/conthrax"
+                            android:letterSpacing="0.04"
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textSize="18sp"
                             android:shadowColor="#54000000"
                             android:shadowDx="0"
                             android:shadowDy="3"
-                            android:shadowRadius="6"/>
+                            android:shadowRadius="6" />
 
                         <ImageView
-                            android:layout_width="16dp"
+                            android:layout_width="14dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/helixios_cat_logo" />
+                            android:paddingTop="2dp"
+                            android:layout_marginHorizontal="1dp"
+                            android:src="@drawable/helixios_cat_logo"
+                            />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="S"
+                            android:letterSpacing="0.05"
                             android:textColor="@color/white"
                             android:fontFamily="@font/conthrax"
                             android:gravity="center"
@@ -128,7 +133,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="exclusive"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
                         android:textColor="@color/white"
                         android:fontFamily="@font/lemonmilk_reg"
                         android:shadowColor="#54000000"
@@ -175,6 +180,7 @@
                             android:layout_height="wrap_content"
                             android:text="Mirage"
                             android:textColor="@color/white"
+                            android:layout_marginBottom="-2dp"
                             android:fontFamily="@font/lemonmilk_reg"
                             android:textSize="16sp"
                             android:shadowColor="#54000000"
@@ -185,9 +191,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="exclusive"
+                            android:layout_gravity="center|top"
                             android:textColor="@color/white"
                             android:fontFamily="@font/lemonmilk_reg"
-                            android:textSize="12sp"
+                            android:textSize="10sp"
                             android:shadowColor="#54000000"
                             android:shadowDx="0"
                             android:shadowDy="3"
@@ -258,14 +265,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/landscape_bg"
+                    android:background="@drawable/control_bg"
                     android:fontFamily="@font/lemonmilk_reg"
                     android:gravity="center"
                     android:shadowColor="#54000000"
                     android:shadowDx="0"
                     android:shadowDy="3"
                     android:shadowRadius="6"
-                    android:text="@string/cat_land"
+                    android:text="@string/cat_control"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
             </androidx.cardview.widget.CardView>
@@ -579,33 +586,33 @@
             app:layout_constraintTop_toBottomOf="@id/constlay_6">
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/catCard_13"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="3dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="w,2.5:1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/catCard_13"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:cardCornerRadius="5dp"-->
+<!--                app:cardElevation="3dp"-->
+<!--                app:cardUseCompatPadding="true"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintDimensionRatio="w,2.5:1"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/control_bg"
-                    android:fontFamily="@font/lemonmilk_reg"
-                    android:gravity="center"
-                    android:shadowColor="#54000000"
-                    android:shadowDx="0"
-                    android:shadowDy="3"
-                    android:shadowRadius="6"
-                    android:text="@string/cat_control"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-            </androidx.cardview.widget.CardView>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:background="@drawable/control_bg"-->
+<!--                    android:fontFamily="@font/lemonmilk_reg"-->
+<!--                    android:gravity="center"-->
+<!--                    android:shadowColor="#54000000"-->
+<!--                    android:shadowDx="0"-->
+<!--                    android:shadowDy="3"-->
+<!--                    android:shadowRadius="6"-->
+<!--                    android:text="@string/cat_control"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="16sp" />-->
+<!--            </androidx.cardview.widget.CardView>-->
 
             <!--            <androidx.cardview.widget.CardView-->
             <!--                android:id="@+id/catCard_14"-->

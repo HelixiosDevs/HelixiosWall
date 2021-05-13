@@ -21,6 +21,7 @@ import android.transition.Explode;
 import android.transition.Fade;
 import android.transition.Slide;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -60,6 +61,8 @@ public class PhotoActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.creator_photo_full);
         LinearLayout setWallClick = findViewById(R.id.wall_click);
         LinearLayout downloadClick = findViewById(R.id.down_click);
+        LinearLayout shareClick = findViewById(R.id.share_click);
+        LinearLayout faveClick = findViewById(R.id.fave_click);
 //        FloatingActionButton FaveFab = findViewById(R.id.fab_fave);
 //        FloatingActionButton shareFab = findViewById(R.id.fab_share);
         Photo photo = null;
@@ -116,11 +119,12 @@ public class PhotoActivity extends AppCompatActivity {
             }
         }
 
+        TypedValue outValue = new TypedValue();
+        this.getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
+        faveClick.setBackgroundResource(outValue.resourceId);
+
 
         //getWindow().setSharedElementEnterTransition(new ChangeBounds().addTarget(imageView).setStartDelay(800).setDuration(1000));
-
-
-
 
         down_url = photo.getUrl_o();
         Log.d("foto", "onCreate:"+photo.getOwner_name());
