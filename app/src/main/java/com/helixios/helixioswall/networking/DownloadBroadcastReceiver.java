@@ -6,6 +6,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
+
+import com.helixios.helixioswall.CropActivity;
 
 import java.io.File;
 
@@ -30,10 +33,24 @@ public class DownloadBroadcastReceiver extends BroadcastReceiver {
             //Wallpaper manager is built-in android to set an image as wallpaper
             //getCropAndSetWallpaperIntent takes the uri of an image and returns a runnable intent
             //that intent can be used to set wallpaper.
-            Intent wallMan = WallpaperManager.getInstance(context).getCropAndSetWallpaperIntent(uri);
-            wallMan.setDataAndType(uri, "image/*");
-            wallMan.putExtra("mimeType", "image/*");
-            context.startActivity(wallMan);
+            try{
+                Intent wallMan = WallpaperManager.getInstance(context).getCropAndSetWallpaperIntent(uri);
+                wallMan.setDataAndType(uri, "image/*");
+                wallMan.putExtra("mimeType", "image/*");
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+                    Intent myCrop =new Intent(context, CropActivity.class);
+                    myCrop.putExtra(CropActivity.TAG_URISTR, uri.toString());
+                    context.startActivity(myCrop);
+                }
+                else{
+                    context.startActivity(wallMan);
+                }
+            }
+            catch (IllegalArgumentException e) {
+                Intent myCrop =new Intent(context, CropActivity.class);
+                myCrop.putExtra(CropActivity.TAG_URISTR, uri.toString());
+                context.startActivity(myCrop);
+            }
         }
     }
 }

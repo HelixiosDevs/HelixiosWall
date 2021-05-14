@@ -2,30 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.helixios.helixioswall">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SET_WALLPAPER" />
-    <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
-
     <application
         android:allowBackup="true"
-        android:largeHeap="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HelixiosWall">
-        <activity android:name=".PhotoActivity"
-            android:theme="@style/Theme.HelixiosWall.NoActionBar"
+        <activity android:name=".CropActivity"></activity>
+        <activity
+            android:name=".PhotoActivity"
+            android:hardwareAccelerated="false"
             android:screenOrientation="portrait"
-            android:hardwareAccelerated="false"/>
+            android:theme="@style/Theme.HelixiosWall.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.HelixiosWall.NoActionBar" />
         <activity
             android:name=".FullscreenActivity"
@@ -38,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.helixios.helixioswall.fileprovider"
@@ -48,5 +44,11 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

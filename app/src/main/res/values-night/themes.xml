@@ -10,12 +10,12 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/appBar</item>
         <!-- Customize your theme here. -->
     </style>
 
     <style name="ThemeOverlay.HelixiosWall.FullscreenContainer" parent="">
-        <item name="fullscreenBackgroundColor">@color/light_blue_900</item>
+        <item name="fullscreenBackgroundColor">@color/appBar</item>
         <item name="fullscreenTextColor">@color/light_blue_A400</item>
     </style>
 </resources>
