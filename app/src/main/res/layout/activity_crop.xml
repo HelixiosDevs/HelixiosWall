@@ -3,20 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/black"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <com.theartofdev.edmodo.cropper.CropImageView
         android:id="@+id/cropView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:cropScaleType="centerCrop"
         app:cropShowProgressBar="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#F11C2634">
+        android:background="#861C2634">
         <TextView
             android:id="@+id/text_crop"
             android:layout_width="wrap_content"

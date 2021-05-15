@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +14,7 @@ import android.transition.Fade;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.helixios.helixioswall.database.HelixDatabase;
 import com.helixios.helixioswall.ui.main.SectionsPagerAdapter;
 import com.squareup.picasso.Picasso;
 

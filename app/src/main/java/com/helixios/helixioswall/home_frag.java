@@ -131,7 +131,7 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
 //                }
                 foto = response.body();
 
-                Log.d("foto", String.valueOf(foto.getPhotosNest().getPhotos_list().get(2).getUrl_z()));
+                Log.d("foto", String.valueOf(foto.getPhotosNest().getPhotos_list().get(0).getUrl_z()));
                 mPhotoList.addAll(foto.getPhotosNest().getPhotos_list());
                 Log.i("foto", String.valueOf(mPhotoList.size()));
                 Collections.shuffle(mPhotoList);

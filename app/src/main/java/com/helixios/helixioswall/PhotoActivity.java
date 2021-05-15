@@ -3,6 +3,7 @@ package com.helixios.helixioswall;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
+import androidx.room.Room;
 
 import android.Manifest;
 import android.app.DownloadManager;
@@ -30,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.helixios.helixioswall.database.HelixDatabase;
 import com.helixios.helixioswall.model.Photo;
 import com.helixios.helixioswall.networking.DownloadBroadcastReceiver;
 import com.squareup.picasso.Callback;
@@ -43,11 +45,7 @@ public class PhotoActivity extends AppCompatActivity {
     String imageName = null;
     String down_url = null;
     DownloadBroadcastReceiver downReceiver = null;
-
-    enum Action{
-        WALLPAPER,
-        DOWNLOAD_ONLY
-    }
+    long down_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +58,7 @@ public class PhotoActivity extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.photo_full);
         ImageView back_button = findViewById(R.id.back_button);
         TextView textView = findViewById(R.id.creator_photo_full);
+        ImageView add_fave = findViewById(R.id.add_favourite);
         LinearLayout setWallClick = findViewById(R.id.wall_click);
         LinearLayout downloadClick = findViewById(R.id.down_click);
         LinearLayout shareClick = findViewById(R.id.share_click);
@@ -139,9 +138,35 @@ public class PhotoActivity extends AppCompatActivity {
             setWallServe();
         });
 
-        back_button.setOnClickListener(v ->{
-            finish();
+        HelixDatabase Db = Room.databaseBuilder(getApplicationContext(),
+                HelixDatabase.class, "favourites-data").allowMainThreadQueries().build();
+
+        Photo finalPhoto = photo;
+        final boolean[] clicked = {false};
+
+        Photo foto2 = Db.favDao().getfaveStatus(finalPhoto.getId());
+        if(foto2 != null) {
+            if(finalPhoto.getId() == foto2.getId()) {
+                clicked[0]=true;
+                add_fave.setImageResource(R.drawable.heart_red);
+            }
+        }
+        faveClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(clicked[0]) {
+                    Db.favDao().removeFavourite(finalPhoto.getId());
+                    add_fave.setImageResource(R.drawable.fav_icon);
+                }
+                else {
+                    Db.favDao().insert(finalPhoto);
+                    add_fave.setImageResource(R.drawable.heart_red);
+                    clicked[0] = true;
+                }
+            }
         });
+
+        back_button.setOnClickListener(v -> finish());
     }
 
     @Override
@@ -156,10 +181,7 @@ public class PhotoActivity extends AppCompatActivity {
     {
         String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()+ File.separator + imageName;
         Log.i("cop", String.valueOf(MediaStore.Images.Media.getContentUri(imageName)));
-//        WallpaperManager wall= new WallpaperManager();
-//        if(wall.isSetWallpaperAllowed()) {
-//
-//        }
+
         Toast.makeText(this,"This works right ?",Toast.LENGTH_SHORT).show();
 //Moved this code to BroadcastReceiver to execute according to the download
 //        Uri uri = FileProvider.getUriForFile(this, "com.helixios.helixioswall.fileprovider", new File(path));
@@ -181,6 +203,6 @@ public class PhotoActivity extends AppCompatActivity {
         request.allowScanningByMediaScanner();
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, outputFileName);
         DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-        manager.enqueue(request);
+        down_id = manager.enqueue(request);
     }
 }

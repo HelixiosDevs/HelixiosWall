@@ -7,6 +7,13 @@
     tools:context=".favour_frag"
     android:background="@color/white">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/button3"
@@ -27,4 +34,11 @@
         android:clickable="true"
         android:src="@drawable/download"
         android:layout_gravity="end"/>
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_height="wrap_content"
+        android:text="ToggleButton" />
 </FrameLayout>

@@ -21,6 +21,7 @@ public class DownloadBroadcastReceiver extends BroadcastReceiver {
 
     String path;
 
+
     public DownloadBroadcastReceiver(String path) {
         this.path = path;
     }
@@ -49,21 +50,22 @@ public class DownloadBroadcastReceiver extends BroadcastReceiver {
                 context.startActivity(wallMan);
             }
             catch (IllegalArgumentException e) {
-                String[] arrOfStr = path.split("/", 100);
-                String imageName = arrOfStr[arrOfStr.length-1];
-                //Log.i("cop", String.valueOf(MediaStore.Images.Media.DISPLAY_NAME.));
-                Uri u1 = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                Uri u2 = Uri.parse(u1.toString()+ File.separator+imageName);
-                Log.i("cop",u2.toString());
-                
-                Intent wall = WallpaperManager.getInstance(context).getCropAndSetWallpaperIntent(u2);
-                wall.setDataAndType(u2, "image/*");
-                wall.putExtra("mimeType", "image/*");
-                context.startActivity(wall);
-//                Log.e("crop99",e.toString()  );
-//                Intent myCrop =new Intent(context, CropActivity.class);
-//                myCrop.putExtra(CropActivity.TAG_URISTR, uri.toString());
-//                context.startActivity(myCrop);
+//                String[] arrOfStr = path.split("/", 100);
+//                String imageName = arrOfStr[arrOfStr.length-1];
+//                //Log.i("cop", String.valueOf(MediaStore.Images.Media.DISPLAY_NAME.));
+//                Uri u1 = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+//                Uri u2 = Uri.parse(u1.toString()+ File.separator+imageName);
+//                Log.i("cop",u2.toString());
+//
+//                Intent wall = WallpaperManager.getInstance(context).getCropAndSetWallpaperIntent(u2);
+//                wall.setDataAndType(u2, "image/*");
+//                wall.putExtra("mimeType", "image/*");
+//                context.startActivity(wall);
+
+                Log.e("crop99",e.toString()  );
+                Intent myCrop =new Intent(context, CropActivity.class);
+                myCrop.putExtra(CropActivity.TAG_URISTR, uri.toString());
+                context.startActivity(myCrop);
             }
         }
     }

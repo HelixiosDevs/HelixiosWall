@@ -6,8 +6,16 @@ import android.os.Parcelable;
 import org.jetbrains.annotations.NotNull;
 
 import androidx.annotation.Nullable;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
 public class Photo implements Parcelable {
+
+    @PrimaryKey(autoGenerate = true)
+    private int primary_id;
+    @Nullable
+    private Long time;
     @Nullable
     private String id;
     @Nullable
@@ -136,6 +144,22 @@ public class Photo implements Parcelable {
             return new Photo[size];
         }
     };
+
+    public int getPrimary_id() {
+        return primary_id;
+    }
+
+    public void setPrimary_id(int primary_id) {
+        this.primary_id = primary_id;
+    }
+    @Nullable
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(@Nullable Long time) {
+        this.time = time;
+    }
 
     @Nullable
     public String getId() {
