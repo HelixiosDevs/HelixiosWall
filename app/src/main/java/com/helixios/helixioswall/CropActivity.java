@@ -4,16 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.WallpaperManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.theartofdev.edmodo.cropper.CropImage;
+import com.helixios.helixioswall.model.Photo;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImageView;
+
+import java.io.IOException;
+import java.util.function.DoubleToIntFunction;
 
 public class CropActivity extends AppCompatActivity {
 
@@ -31,8 +36,19 @@ public class CropActivity extends AppCompatActivity {
         int width = WallpaperManager.getInstance(this).getDesiredMinimumWidth();
         int height = WallpaperManager.getInstance(this).getDesiredMinimumHeight();
         Log.d("crop", String.valueOf(width)+" set and support"+String.valueOf(height));
+        Log.d("crop", uristr);
 
-        cropView.setImageUriAsync(sourceUri);
+        Bitmap bit = null;
+        try {
+            bit = MediaStore.Images.Media.getBitmap(this.getContentResolver(), sourceUri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        int wid2 = (int) (bit.getWidth()/1.5);
+        int h2 = (int) (bit.getHeight()/1.5);
+        Bitmap bit2 = Bitmap.createScaledBitmap(bit,wid2,h2,true);
+        cropView.setImageBitmap(bit2);
+       // cropView.setImageUriAsync(sourceUri);
         cropView.setAspectRatio(width, height);
 
         cropText.setOnClickListener(v -> {
@@ -41,10 +57,11 @@ public class CropActivity extends AppCompatActivity {
         });
 
         cropView.setOnCropImageCompleteListener((view, result) -> {
+            Log.d("crop","Click");
             if(result.getError() == null) {
                 try{
                     Bitmap bitmap = result.getBitmap();
-                    Log.d("crop", String.valueOf(bitmap.getHeight()));
+                    Log.d("crop", String.valueOf(bitmap.getHeight()+"height"));
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 
                         WallpaperManager.getInstance(this).setBitmap(bitmap, null, true,
@@ -55,10 +72,12 @@ public class CropActivity extends AppCompatActivity {
                     finish();
                 }
                 catch (Exception e) {
+                    Log.d("crop","error"+e.toString());
                     Toast.makeText(CropActivity.this,e.toString(),Toast.LENGTH_SHORT).show();
                 }
             }
             else {
+                Log.e("crop9", String.valueOf(result.isSuccessful()));
                 Toast.makeText(CropActivity.this, result.getError().toString(),Toast.LENGTH_SHORT).show();
             }
         });

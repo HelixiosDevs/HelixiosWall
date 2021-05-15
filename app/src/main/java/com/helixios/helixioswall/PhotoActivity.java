@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.transition.ChangeBounds;
 import android.transition.Explode;
 import android.transition.Fade;
@@ -154,6 +155,7 @@ public class PhotoActivity extends AppCompatActivity {
     public void setWallServe()
     {
         String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()+ File.separator + imageName;
+        Log.i("cop", String.valueOf(MediaStore.Images.Media.getContentUri(imageName)));
 //        WallpaperManager wall= new WallpaperManager();
 //        if(wall.isSetWallpaperAllowed()) {
 //
