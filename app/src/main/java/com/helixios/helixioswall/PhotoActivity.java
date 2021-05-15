@@ -53,7 +53,7 @@ public class PhotoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_photo);
 
         // Postpone the shared element enter transition.
-        postponeEnterTransition();
+        //postponeEnterTransition();
 
         ImageView imageView = findViewById(R.id.photo_full);
         ImageView back_button = findViewById(R.id.back_button);
@@ -74,8 +74,6 @@ public class PhotoActivity extends AppCompatActivity {
         else {
             finish();
         }
-        imageView.setTransitionName("sharedPhotoTransition"+photo.getId());
-        Log.d("foto8", imageView.getTransitionName());
 
 //        Explode explode = new Explode();
 //        View decor = getWindow().getDecorView();
@@ -86,8 +84,7 @@ public class PhotoActivity extends AppCompatActivity {
 //        explode.setDuration(500);
 //        getWindow().setEnterTransition(explode);
 //        getWindow().setExitTransition(explode);
-
-        getWindow().setSharedElementEnterTransition(new ChangeBounds().setDuration(1000));
+//        getWindow().setSharedElementEnterTransition(new ChangeBounds().setDuration(1000));
 
         if (photo.getUrl_o()==null) {
             //b type img is 1024px long edge(unrestricted best quality)

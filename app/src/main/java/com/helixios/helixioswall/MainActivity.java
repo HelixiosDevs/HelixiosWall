@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         fade.setDuration(1500);
         getWindow().setEnterTransition(fade);
         getWindow().setExitTransition(fade);
-        getWindow().setSharedElementEnterTransition(new ChangeBounds().setDuration(500));
+        getWindow().setSharedElementEnterTransition(new ChangeBounds().setDuration(800));
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);

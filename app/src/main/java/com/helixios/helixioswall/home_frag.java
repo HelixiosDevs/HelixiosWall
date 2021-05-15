@@ -174,7 +174,7 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
 //        fragTransaction.addToBackStack(null);
 //        fragTransaction.commit();
 
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) imageView.getContext(),imageView,"sharedPhotoTransition"+mPhotoList.get(position).getId());
+//        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) imageView.getContext(),imageView,"sharedPhotoTransition"+mPhotoList.get(position).getId());
 //        Fade explode = new Fade();
 //        View decor = getActivity().getWindow().getDecorView();
 //        explode.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
@@ -185,8 +185,9 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
 //        getActivity().getWindow().setEnterTransition(explode);
 //        getActivity().getWindow().setExitTransition(explode);
 
-        getActivity().getWindow().setSharedElementEnterTransition(new ChangeBounds().addTarget(imageView).setStartDelay(500).setDuration(1000));
-        ActivityCompat.startActivity(imageView.getContext(), intent,options.toBundle());
+//        getActivity().getWindow().setSharedElementEnterTransition(new ChangeBounds().addTarget(imageView).setStartDelay(500).setDuration(1000));
+//        ActivityCompat.startActivity(imageView.getContext(), intent,options.toBundle());
+        startActivity(intent);
     }
 
 //This comparison is only working partially

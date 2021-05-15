@@ -42,7 +42,7 @@ public class CropActivity extends AppCompatActivity {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         WindowManager windowmanager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowmanager.getDefaultDisplay().getMetrics(displayMetrics);
-        int width = (int) (displayMetrics.widthPixels*1.2);
+        int width = (int) (displayMetrics.widthPixels*1.1);
         int height = displayMetrics.heightPixels;
         Bitmap bit = null;
         try {
