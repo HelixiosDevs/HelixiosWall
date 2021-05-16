@@ -3,7 +3,9 @@ package com.helixios.helixioswall;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
+import androidx.room.Database;
 import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
 import android.Manifest;
 import android.app.DownloadManager;
@@ -14,6 +16,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -135,33 +138,50 @@ public class PhotoActivity extends AppCompatActivity {
             setWallServe();
         });
 
-        HelixDatabase Db = Room.databaseBuilder(getApplicationContext(),
-                HelixDatabase.class, "favourites-data").allowMainThreadQueries().build();
-
         Photo finalPhoto = photo;
         final boolean[] clicked = {false};
+        final HelixDatabase[] Db = new HelixDatabase[1];
 
-        Photo foto2 = Db.favDao().getfaveStatus(finalPhoto.getId());
-        if(foto2 != null) {
-            if(finalPhoto.getId() == foto2.getId()) {
-                clicked[0]=true;
-                add_fave.setImageResource(R.drawable.heart_red);
+        Thread thread = new Thread(() -> {
+            Db[0] = HelixDatabase.getInstance(PhotoActivity.this);
+
+            Photo foto2 = Db[0].favDao().getfaveStatus(finalPhoto.getId());
+            if(foto2 != null ) {
+                if(finalPhoto.getId().equals(foto2.getId())) {
+                    clicked[0]=true;
+                    add_fave.setImageResource(R.drawable.heart_red);
+                }
             }
-        }
+
+        });
+        thread.start();
+
         faveClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Thread thread2 = new Thread(() -> {
+                    if(clicked[0]) {
+                        Db[0].favDao().removeFavourite(finalPhoto.getId());
+                        clicked[0] = true;
+                    }
+                    else {
+                        Db[0].favDao().insert(finalPhoto);
+                        clicked[0] = true;
+                    }
+                });
+                thread2.start();
+                while(thread2.isAlive()){
+                    continue;
+                }
                 if(clicked[0]) {
-                    Db.favDao().removeFavourite(finalPhoto.getId());
-                    add_fave.setImageResource(R.drawable.fav_icon);
+                    add_fave.setImageResource(R.drawable.heart_red);
                 }
                 else {
-                    Db.favDao().insert(finalPhoto);
-                    add_fave.setImageResource(R.drawable.heart_red);
-                    clicked[0] = true;
+                    add_fave.setImageResource(R.drawable.fav_icon);
                 }
             }
         });
+
 
         back_button.setOnClickListener(v -> finish());
     }

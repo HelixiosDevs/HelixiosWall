@@ -163,8 +163,8 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
         Intent intent = new Intent(imageView.getContext(), PhotoActivity.class);
         intent.putExtra("photo", mPhotoList.get(position));
 
-        imageView.setTransitionName("sharedPhotoTransition"+mPhotoList.get(position).getId());
-        Log.d("foto8", imageView.getTransitionName());
+//        imageView.setTransitionName("sharedPhotoTransition"+mPhotoList.get(position).getId());
+//        Log.d("foto8", imageView.getTransitionName());
 
 //        FragmentManager fragmentManager = getParentFragmentManager();
 //        FragmentTransaction fragTransaction = fragmentManager.beginTransaction();
@@ -187,6 +187,7 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
 
 //        getActivity().getWindow().setSharedElementEnterTransition(new ChangeBounds().addTarget(imageView).setStartDelay(500).setDuration(1000));
 //        ActivityCompat.startActivity(imageView.getContext(), intent,options.toBundle());
+
         startActivity(intent);
     }
 

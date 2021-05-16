@@ -1,7 +1,6 @@
 package com.helixios.helixioswall.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,37 +9,37 @@ import android.widget.ImageView;
 
 import com.helixios.helixioswall.R;
 import com.helixios.helixioswall.model.Photo;
-import com.helixios.helixioswall.model.SearchPhotos;
 import com.squareup.picasso.Picasso;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+public class RecyclerViewAdapterFavourite extends RecyclerView.Adapter<RecyclerViewAdapterFavourite.FaveViewHolder> {
     private Context mContext;
     private ArrayList<Photo> mPhotos;
-    private OnPhotoListener mOnPhotoListener;
+    private RecyclerViewAdapter.OnPhotoListener mOnPhotoListener;
 
-    public RecyclerViewAdapter(Context context, ArrayList<Photo> photoList, OnPhotoListener onPhotoListener) {
+
+    public RecyclerViewAdapterFavourite(Context context, ArrayList<Photo> photos, RecyclerViewAdapter.OnPhotoListener onPhotoListener) {
         mContext = context;
-        mPhotos = photoList;
-        this.mOnPhotoListener = onPhotoListener;
+        mPhotos = photos;
+        mOnPhotoListener = onPhotoListener;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_home_photos,parent,false);
+    public FaveViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_fave_photos,parent,false);
 
-        return new MyViewHolder(view, mOnPhotoListener);
+        return new FaveViewHolder(view, mOnPhotoListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull FaveViewHolder holder, int position) {
         Photo currentPhoto = mPhotos.get(position);
 
         String id = currentPhoto.getId();
@@ -50,29 +49,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Log.d("pix",id+"- is ID -"+title+"-is Title.");
         Log.d("pix",url_z);
         Picasso.get().load(url_z).placeholder(R.drawable.placeholder_heli).fit().centerCrop().into(holder.mImageView);
+
     }
 
     @Override
     public int getItemCount() {
-        //Log.i("foto1", String.valueOf((mPhotos.size())));
         return mPhotos.size();
     }
 
-/*
- Implement this method when total number of photos reach 500.
-    private boolean hasExtraRow() {
-        return false;
-    }
-*/
-
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class FaveViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView mImageView;
-        public OnPhotoListener onPhotoListener;
+        public RecyclerViewAdapter.OnPhotoListener onPhotoListener;
 
-        public MyViewHolder(@NonNull View itemView, OnPhotoListener onPhotoListener) {
+        public FaveViewHolder(@NonNull @NotNull View itemView, RecyclerViewAdapter.OnPhotoListener onPhotoListener) {
             super(itemView);
-            mImageView = itemView.findViewById(R.id.item_home_imageView);
+            mImageView = itemView.findViewById(R.id.item_fave_imageView);
             this.onPhotoListener = onPhotoListener;
             itemView.setOnClickListener(this);
         }
@@ -81,9 +73,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public void onClick(View v) {
             onPhotoListener.onPhotoClick(getAdapterPosition());
         }
-    }
-
-    public interface OnPhotoListener {
-        void onPhotoClick(int position);
     }
 }

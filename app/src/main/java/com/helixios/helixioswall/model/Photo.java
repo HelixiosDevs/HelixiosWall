@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "photo_table")
 public class Photo implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)

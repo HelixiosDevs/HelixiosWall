@@ -1,19 +1,29 @@
 package com.helixios.helixioswall;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.helixios.helixioswall.adapters.RecyclerViewAdapter;
+import com.helixios.helixioswall.adapters.RecyclerViewAdapterFavourite;
+import com.helixios.helixioswall.database.HelixDatabase;
+import com.helixios.helixioswall.model.Photo;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link favour_frag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class favour_frag extends Fragment {
+public class favour_frag extends Fragment implements RecyclerViewAdapter.OnPhotoListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +33,11 @@ public class favour_frag extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerViewAdapterFavourite mFaveAdapter;
+    private ArrayList<Photo> mPhotoList;
 
     public favour_frag() {
         // Required empty public constructor
@@ -59,6 +74,29 @@ public class favour_frag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favour, container, false);
+        View v = inflater.inflate(R.layout.fragment_favour, container, false);
+
+        mRecyclerView = v.findViewById(R.id.recycler_view_fave);
+        mLayoutManager = new GridLayoutManager(getActivity(),3);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mPhotoList = new ArrayList<>();
+        mFaveAdapter = new RecyclerViewAdapterFavourite(getContext(),mPhotoList,this);
+        mRecyclerView.setAdapter(mFaveAdapter);
+
+        Thread thread = new Thread(() -> {
+            mPhotoList.addAll(HelixDatabase.getInstance(getContext()).favDao().getFavourite());
+            mFaveAdapter.notifyDataSetChanged();
+        });
+        thread.start();
+
+        return v;
+    }
+
+    @Override
+    public void onPhotoClick(int position) {
+        ImageView imageView = getView().findViewById(R.id.item_home_imageView);
+        Intent intent = new Intent(imageView.getContext(), PhotoActivity.class);
+        intent.putExtra("photo", mPhotoList.get(position));
+        startActivity(intent);
     }
 }
