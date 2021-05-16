@@ -162,7 +162,7 @@ public class PhotoActivity extends AppCompatActivity {
                 Thread thread2 = new Thread(() -> {
                     if(clicked[0]) {
                         Db[0].favDao().removeFavourite(finalPhoto.getId());
-                        clicked[0] = true;
+                        clicked[0] = false;
                     }
                     else {
                         Db[0].favDao().insert(finalPhoto);
