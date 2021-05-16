@@ -174,7 +174,7 @@ public class PhotoActivity extends AppCompatActivity {
                     continue;
                 }
                 if(clicked[0]) {
-                    add_fave.setImageResource(R.drawable.heart_red);
+                    add_fave.setImageResource(R.drawable.fav_icon_red);
                 }
                 else {
                     add_fave.setImageResource(R.drawable.fav_icon);

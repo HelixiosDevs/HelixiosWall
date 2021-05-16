@@ -94,7 +94,7 @@ public class favour_frag extends Fragment implements RecyclerViewAdapter.OnPhoto
 
     @Override
     public void onPhotoClick(int position) {
-        ImageView imageView = getView().findViewById(R.id.item_home_imageView);
+        ImageView imageView = getView().findViewById(R.id.item_fave_imageView);
         Intent intent = new Intent(imageView.getContext(), PhotoActivity.class);
         intent.putExtra("photo", mPhotoList.get(position));
         startActivity(intent);
