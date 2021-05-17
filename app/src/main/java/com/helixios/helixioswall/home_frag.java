@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,6 +63,7 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerViewAdapter mAdapter;
+    private SwipeRefreshLayout refreshHome;
     private List<SearchPhotos> mSearchPhotos;
     private SearchPhotos foto ;
     private ArrayList<Photo> mPhotoList;
@@ -105,6 +107,7 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
+        refreshHome = v.findViewById(R.id.swipeRefresh_home);
         mRecyclerView = v.findViewById(R.id.recycler_view_home);
         mLayoutManager = new GridLayoutManager(getActivity(),3);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -143,6 +146,33 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
             @Override
             public void onFailure(Call<SearchPhotos> call, Throwable t) {
                 Log.e("Err", t.getMessage());
+            }
+        });
+
+        refreshHome.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPhotoList.clear();
+                call.clone().enqueue(new Callback<SearchPhotos>() {
+                    @Override
+                    public void onResponse(Call<SearchPhotos> call, Response<SearchPhotos> response) {
+                        foto = response.body();
+
+                        Log.d("foto", String.valueOf(foto.getPhotosNest().getPhotos_list().get(0).getUrl_z()));
+                        mPhotoList.addAll(foto.getPhotosNest().getPhotos_list());
+                        Log.i("foto", String.valueOf(mPhotoList.size()));
+                        Collections.shuffle(mPhotoList);
+                        //Collections.sort(mPhotoList,compareByRatio);
+                        Log.d("foto5","working");
+                        mAdapter.notifyDataSetChanged();
+                        refreshHome.setRefreshing(false);
+                    }
+
+                    @Override
+                    public void onFailure(Call<SearchPhotos> call, Throwable t) {
+
+                    }
+                });
             }
         });
 

@@ -110,12 +110,12 @@ public class category_frag extends Fragment implements View.OnClickListener {
         switch(view.getId()) {
             case R.id.card_Helixios:
                 tags = null;
-                user_id = "192835674%40N07";
+                user_id = "192835674@N07";
                 cat = "Helixios";
                 break;
             case R.id.card_Mirage:
                 tags = null;
-                user_id = "151660254%40N04";
+                user_id = "151660254@N04";
                 cat = "Mirage";
                 break;
             case R.id.card_Control:

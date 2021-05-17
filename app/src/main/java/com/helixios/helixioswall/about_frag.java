@@ -1,5 +1,7 @@
 package com.helixios.helixioswall;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +63,27 @@ public class about_frag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about, container, false);
+        View view = inflater.inflate(R.layout.fragment_about, container, false);
+
+        LinearLayout helix_url = view.findViewById(R.id.linearLayout2);
+        ImageView insta_url = view.findViewById(R.id.imageView4);
+        ImageView facebook_url = view.findViewById(R.id.imageView5);
+        ImageView youtube_url = view.findViewById(R.id.imageView6);
+        ImageView tele_url = view.findViewById(R.id.imageView7);
+        ImageView discord_url = view.findViewById(R.id.imageView8);
+
+        helix_url.setOnClickListener(view1 -> gotoUrl("http://www.helixios-esports.tech/"));
+        insta_url.setOnClickListener(view12 -> gotoUrl("https://www.instagram.com/helixios.corp/"));
+        facebook_url.setOnClickListener(view13 -> gotoUrl("https://www.facebook.com/helixios.corp"));
+        youtube_url.setOnClickListener(view14 -> gotoUrl("https://www.youtube.com/HelixiosCorp"));
+        tele_url.setOnClickListener(view15 -> gotoUrl("https://t.me/helixioscorp"));
+        discord_url.setOnClickListener(view16 -> gotoUrl("https://discord.com/invite/tpNjxdr"));
+
+        return view;
+    }
+
+    private void gotoUrl(String url) {
+        Uri uri = Uri.parse(url);
+        startActivity(new Intent(Intent.ACTION_VIEW,uri));
     }
 }

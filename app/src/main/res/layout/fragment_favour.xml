@@ -4,24 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".favour_frag"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".favour_frag">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="FAVOURITES"
-        android:textSize="22sp"
-        android:paddingTop="22dp"
-        android:paddingBottom="15dp"
-        android:fontFamily="@font/lemonmilk_reg"
-        android:textColor="@color/white"
-        />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_fave"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh_fav"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"/>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lemonmilk_reg"
+                android:gravity="center"
+                android:paddingTop="22dp"
+                android:paddingBottom="15dp"
+                android:text="FAVOURITES"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_fave"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical" />
+
+
+        </LinearLayout>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </LinearLayout>

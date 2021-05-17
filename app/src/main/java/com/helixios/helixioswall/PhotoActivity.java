@@ -47,6 +47,7 @@ public class PhotoActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 100;
     String imageName = null;
     String down_url = null;
+    String path;
     DownloadBroadcastReceiver downReceiver = null;
     long down_id;
 
@@ -200,7 +201,7 @@ public class PhotoActivity extends AppCompatActivity {
 
     public void setWallServe()
     {
-        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()+ File.separator + imageName;
+        path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()+ File.separator + imageName;
         Log.i("cop", String.valueOf(MediaStore.Images.Media.getContentUri(imageName)));
 
         Toast.makeText(this,"This works right ?",Toast.LENGTH_SHORT).show();

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,7 @@ public class favour_frag extends Fragment implements RecyclerViewAdapter.OnPhoto
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerViewAdapterFavourite mFaveAdapter;
+    private SwipeRefreshLayout refreshFav;
     private ArrayList<Photo> mPhotoList;
 
     public favour_frag() {
@@ -77,6 +80,7 @@ public class favour_frag extends Fragment implements RecyclerViewAdapter.OnPhoto
         View v = inflater.inflate(R.layout.fragment_favour, container, false);
 
         mRecyclerView = v.findViewById(R.id.recycler_view_fave);
+        refreshFav = v.findViewById(R.id.swipeRefresh_fav);
         mLayoutManager = new GridLayoutManager(getActivity(),3);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mPhotoList = new ArrayList<>();
@@ -92,7 +96,40 @@ public class favour_frag extends Fragment implements RecyclerViewAdapter.OnPhoto
         }
         mFaveAdapter.notifyDataSetChanged();
 
+        refreshFav.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPhotoList.clear();
+                Thread thread1 = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPhotoList.addAll(HelixDatabase.getInstance(getContext()).favDao().getFavourite());
+                    }
+                });
+                thread1.start();
+                while(thread1.isAlive()) {
+                    continue;
+                }
+                mFaveAdapter.notifyDataSetChanged();
+                refreshFav.setRefreshing(false);
+            }
+        });
+
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        mPhotoList.clear();
+        Thread thread = new Thread(() -> {
+            mPhotoList.addAll(HelixDatabase.getInstance(getContext()).favDao().getFavourite());
+        });
+        thread.start();
+        while (thread.isAlive()) {
+            continue;
+        }
+        mFaveAdapter.notifyDataSetChanged();
+        super.onResume();
     }
 
     @Override

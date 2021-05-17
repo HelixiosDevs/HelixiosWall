@@ -127,6 +127,7 @@ public class FullscreenActivity extends AppCompatActivity {
         //Set Internet listener here
 
 
+
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
