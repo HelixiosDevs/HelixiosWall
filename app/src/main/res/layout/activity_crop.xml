@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="@color/off_black"
     android:orientation="vertical">
 
     <com.theartofdev.edmodo.cropper.CropImageView
         android:id="@+id/cropView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cropScaleType="centerCrop"
         app:cropShowProgressBar="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
