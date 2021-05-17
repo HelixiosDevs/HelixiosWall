@@ -24,6 +24,7 @@
         app:layout_anchorGravity="bottom" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh_cat"
         android:layout_width="match_parent"
         android:layout_marginTop="120dp"
         android:layout_height="wrap_content">
@@ -32,7 +33,7 @@
             android:id="@+id/recycler_view_cat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:paddingTop="15dp"
             android:paddingHorizontal="4dp"
             android:scrollbars="vertical" />
 
@@ -41,23 +42,20 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_cat"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/appBar"
+        android:layout_height="120dp"
+        android:background="@drawable/top_shade"
         android:theme="@style/Theme.HelixiosWall.AppBarOverlay">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="30dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp">
 
             <ImageView
-                android:id="@+id/logo_1"
+                android:id="@+id/logo_cat"
                 android:layout_width="205dp"
-                android:layout_height="52dp"
-                android:layout_marginBottom="40dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

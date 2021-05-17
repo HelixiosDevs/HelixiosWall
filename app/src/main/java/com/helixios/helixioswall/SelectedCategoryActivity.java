@@ -3,6 +3,7 @@ package com.helixios.helixioswall;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.helixios.helixioswall.adapters.RecyclerViewAdapter;
 import com.helixios.helixioswall.adapters.RecyclerViewAdapterFavourite;
 import com.helixios.helixioswall.adapters.RecyclerViewCategoryAdapter;
@@ -26,6 +28,7 @@ import java.util.Collections;
 public class SelectedCategoryActivity extends AppCompatActivity implements RecyclerViewAdapter.OnPhotoListener {
 
     private RecyclerView mRecyclerView;
+    private SwipeRefreshLayout refreshCat;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerViewCategoryAdapter mCatAdapter;
     private ArrayList<Photo> mPhotoList;
@@ -48,6 +51,8 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
         }
 
         mRecyclerView = findViewById(R.id.recycler_view_cat);
+        refreshCat = findViewById(R.id.swipeRefresh_cat);
+        ImageView cat_logo = findViewById(R.id.logo_cat);
         mLayoutManager = new GridLayoutManager(this,3);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mPhotoList = new ArrayList<>();
@@ -86,6 +91,65 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
                 Log.e("Err", "onFailure: "+t.toString() );
             }
         });
+        refreshCat.setOnRefreshListener(() -> {
+            mPhotoList.clear();
+            call.clone().enqueue(new Callback<SearchPhotos>() {
+                @Override
+                public void onResponse(Call<SearchPhotos> call1, Response<SearchPhotos> response) {
+                    foto = response.body();
+                    mPhotoList.addAll(foto.getPhotosNest().getPhotos_list());
+                    Collections.shuffle(mPhotoList);
+                    //Collections.sort(mPhotoList,compareByRatio);
+                    mCatAdapter.notifyDataSetChanged();
+                    refreshCat.setRefreshing(false);
+                }
+
+                @Override
+                public void onFailure(Call<SearchPhotos> call1, Throwable t) {
+
+                }
+            });
+        });
+
+        switch (category) {
+            case "Helixios":
+                cat_logo.setImageResource(R.drawable.helixios_excl);
+                break;
+            case "Mirage":
+                cat_logo.setImageResource(R.drawable.mirage_excl);
+                break;
+            case "Control":
+                cat_logo.setImageResource(R.drawable.control_lg);
+                break;
+            case "Forza":
+                cat_logo.setImageResource(R.drawable.forza_lg);
+                break;
+            case "Trackmania":
+                cat_logo.setImageResource(R.drawable.trackmania_lg);
+                break;
+            case "Borderlands":
+                cat_logo.setImageResource(R.drawable.borderlands_lg);
+                break;
+            case "Death Stranding":
+                cat_logo.setImageResource(R.drawable.deathstrand_lg);
+                break;
+            case "Nier:Automata":
+                cat_logo.setImageResource(R.drawable.nier_lg);
+                break;
+            case "WatchDogs":
+                cat_logo.setImageResource(R.drawable.watchdogs_lg);
+                break;
+            case "Just Cause":
+                cat_logo.setImageResource(R.drawable.justcause_lg);
+                break;
+            case "Half - Life":
+                cat_logo.setImageResource(R.drawable.halflife_lg);
+                break;
+            case "Inside":
+                cat_logo.setImageResource(R.drawable.inside_lg);
+                break;
+        }
+
     }
 
     @Override
