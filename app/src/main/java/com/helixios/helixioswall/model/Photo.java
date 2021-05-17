@@ -3,11 +3,14 @@ package com.helixios.helixioswall.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import org.jetbrains.annotations.NotNull;
 
 import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import retrofit2.http.Field;
 
 @Entity(tableName = "photo_table")
 public class Photo implements Parcelable {
@@ -53,6 +56,7 @@ public class Photo implements Parcelable {
     private int height_z;
     private int width_z;
     @Nullable
+    @SerializedName("ownername")
     private String owner_name;
     @Nullable
     private String tags;

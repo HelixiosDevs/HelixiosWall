@@ -9,6 +9,9 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
+//Dao-> Data Access Object
+//provide methods that your app can use to query, update, insert, and delete data in the database.
+
 @Dao
 public interface FavouriteDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
