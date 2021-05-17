@@ -123,6 +123,7 @@
                     app:srcCompat="@drawable/fav_icon" />
 
                 <TextView
+                    android:id="@+id/add_fav_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_medium"

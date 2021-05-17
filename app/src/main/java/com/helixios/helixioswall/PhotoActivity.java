@@ -61,6 +61,7 @@ public class PhotoActivity extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.photo_full);
         ImageView back_button = findViewById(R.id.back_button);
         TextView textView = findViewById(R.id.creator_photo_full);
+        TextView favText = findViewById(R.id.add_fav_text);
         ImageView add_fave = findViewById(R.id.add_favourite);
         LinearLayout setWallClick = findViewById(R.id.wall_click);
         LinearLayout downloadClick = findViewById(R.id.down_click);
@@ -119,11 +120,6 @@ public class PhotoActivity extends AppCompatActivity {
             }
         }
 
-        TypedValue outValue = new TypedValue();
-        this.getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
-        faveClick.setBackgroundResource(outValue.resourceId);
-
-
         //getWindow().setSharedElementEnterTransition(new ChangeBounds().addTarget(imageView).setStartDelay(800).setDuration(1000));
 
         down_url = photo.getUrl_o();
@@ -149,37 +145,45 @@ public class PhotoActivity extends AppCompatActivity {
             if(foto2 != null ) {
                 if(finalPhoto.getId().equals(foto2.getId())) {
                     clicked[0]=true;
-                    add_fave.setImageResource(R.drawable.heart_red);
+                    add_fave.setImageResource(R.drawable.fav_icon_red);
+                    favText.setText("Added To Favourites");
                 }
             }
 
         });
         thread.start();
 
-        faveClick.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Thread thread2 = new Thread(() -> {
-                    if(clicked[0]) {
-                        Db[0].favDao().removeFavourite(finalPhoto.getId());
-                        clicked[0] = false;
-                    }
-                    else {
-                        Db[0].favDao().insert(finalPhoto);
-                        clicked[0] = true;
-                    }
-                });
-                thread2.start();
-                while(thread2.isAlive()){
-                    continue;
-                }
+        faveClick.setOnClickListener(view -> {
+            Thread thread2 = new Thread(() -> {
                 if(clicked[0]) {
-                    add_fave.setImageResource(R.drawable.fav_icon_red);
+                    Db[0].favDao().removeFavourite(finalPhoto.getId());
+                    clicked[0] = false;
                 }
                 else {
-                    add_fave.setImageResource(R.drawable.fav_icon);
+                    Db[0].favDao().insert(finalPhoto);
+                    clicked[0] = true;
                 }
+            });
+            thread2.start();
+            while(thread2.isAlive()){
+                continue;
             }
+            if(clicked[0]) {
+                add_fave.setImageResource(R.drawable.fav_icon_red);
+                favText.setText("Added To Favourites");
+            }
+            else {
+                add_fave.setImageResource(R.drawable.fav_icon);
+                favText.setText("Add To Favourites");
+            }
+        });
+
+        shareClick.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            String shareUrl = "https://www.flickr.com/photos/"+finalPhoto.getOwner()+"/"+finalPhoto.getId();
+            intent.putExtra(Intent.EXTRA_TEXT,shareUrl);
+            startActivity(Intent.createChooser(intent,"Share photo"));
         });
 
 

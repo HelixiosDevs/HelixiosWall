@@ -85,9 +85,12 @@ public class favour_frag extends Fragment implements RecyclerViewAdapter.OnPhoto
 
         Thread thread = new Thread(() -> {
             mPhotoList.addAll(HelixDatabase.getInstance(getContext()).favDao().getFavourite());
-            mFaveAdapter.notifyDataSetChanged();
         });
         thread.start();
+        while (thread.isAlive()) {
+            continue;
+        }
+        mFaveAdapter.notifyDataSetChanged();
 
         return v;
     }

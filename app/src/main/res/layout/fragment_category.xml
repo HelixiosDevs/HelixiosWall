@@ -46,7 +46,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/catCard_1"
+                android:id="@+id/card_Helixios"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -55,7 +55,8 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintDimensionRatio="w,2.5:1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true">
 
                 <!--                <TextView-->
                 <!--                    android:layout_width="wrap_content"-->
@@ -146,7 +147,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/catCard_2"
+                android:id="@+id/card_Mirage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
@@ -154,7 +155,8 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintDimensionRatio="w,2.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -252,7 +254,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/catCard_3"
+                android:id="@+id/card_Control"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
@@ -260,7 +262,8 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintDimensionRatio="w,2.5:1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -279,7 +282,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/catCard_4"
+                android:id="@+id/card_Forza"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
@@ -287,7 +290,8 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintDimensionRatio="w,2.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -319,7 +323,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/catCard_5"
+                android:id="@+id/card_Track"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
@@ -327,7 +331,8 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintDimensionRatio="w,2.5:1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -346,7 +351,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/catCard_6"
+                android:id="@+id/card_border"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
@@ -354,7 +359,8 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintDimensionRatio="w,2.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -386,7 +392,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/catCard_7"
+                android:id="@+id/card_DS"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
@@ -394,7 +400,8 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintDimensionRatio="w,2.5:1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -413,7 +420,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/catCard_8"
+                android:id="@+id/card_Nier"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
@@ -421,7 +428,8 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintDimensionRatio="w,2.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -453,7 +461,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/catCard_9"
+                android:id="@+id/card_Watch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
@@ -462,7 +470,8 @@
                 android:clipChildren="true"
                 app:layout_constraintDimensionRatio="w,2.5:1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -481,7 +490,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/catCard_10"
+                android:id="@+id/card_JCause"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
@@ -489,7 +498,8 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintDimensionRatio="w,2.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -521,7 +531,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/catCard_11"
+                android:id="@+id/card_half"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
@@ -529,7 +539,8 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintDimensionRatio="w,2.5:1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -548,7 +559,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/catCard_12"
+                android:id="@+id/card_Inside"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
@@ -556,7 +567,8 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintDimensionRatio="w,2.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true">
 
                 <TextView
                     android:layout_width="wrap_content"

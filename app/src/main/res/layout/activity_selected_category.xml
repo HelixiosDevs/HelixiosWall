@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/mainLayout"
-    tools:context=".MainActivity">
+    tools:context=".SelectedCategoryActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -16,14 +16,23 @@
         app:tint="#F6232D3B"
         android:tintMode="src_atop"/>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/toolbar_dropshadow"
+        app:layout_anchor="@id/appbar_cat"
+        app:layout_anchorGravity="bottom" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_cat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_marginTop="130dp"
+        android:paddingHorizontal="4dp"
+        android:scrollbars="vertical" />
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+        android:id="@+id/appbar_cat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/appBar"
@@ -31,7 +40,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -41,32 +50,16 @@
                 android:id="@+id/logo_1"
                 android:layout_width="205dp"
                 android:layout_height="52dp"
+                android:layout_marginBottom="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/heli_ico"
-                android:transitionName="shift_up"/>
+                app:srcCompat="@drawable/heli_ico" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabIconTint="@color/white"
-            app:tabIndicatorColor="#FE002A"
-            android:background="@color/appBar"
-            android:outlineSpotShadowColor="@color/black"
-            />
-
     </com.google.android.material.appbar.AppBarLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        app:layout_anchorGravity="bottom"
-        app:layout_anchor="@id/appbar"
-        android:background="@drawable/toolbar_dropshadow"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
