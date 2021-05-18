@@ -6,12 +6,23 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_preloader_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        app:lottie_rawRes="@raw/pre_loader"
+        app:lottie_scale="0.1"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:visibility="gone"/>
+
     <ImageView
         android:id="@+id/photo_full"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:scaleType="fitCenter" />
+        android:scaleType="centerInside" />
 
     <ImageView
         android:id="@+id/back_button"
@@ -67,6 +78,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:orientation="vertical">
 
                 <ImageView
@@ -90,6 +104,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:orientation="vertical">
 
                 <ImageView
@@ -113,6 +130,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:orientation="vertical">
 
                 <ImageView
@@ -138,6 +158,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:orientation="vertical">
 
 

@@ -47,7 +47,7 @@ public class RecyclerViewCategoryAdapter extends RecyclerView.Adapter<RecyclerVi
 
         Log.d("pix",id+"- is ID -"+title+"-is Title.");
         Log.d("pix",url_z);
-        Picasso.get().load(url_z).placeholder(R.drawable.placeholder_heli).fit().centerCrop().into(holder.mImageView);
+        Picasso.get().load(url_z).placeholder(R.drawable.preloader_logo).fit().centerCrop().into(holder.mImageView);
     }
 
     @Override

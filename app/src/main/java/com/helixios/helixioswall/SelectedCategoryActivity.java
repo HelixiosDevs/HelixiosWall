@@ -53,6 +53,7 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
         mRecyclerView = findViewById(R.id.recycler_view_cat);
         refreshCat = findViewById(R.id.swipeRefresh_cat);
         ImageView cat_logo = findViewById(R.id.logo_cat);
+        AppBarLayout appBar_Cat = findViewById(R.id.appbar_cat);
         mLayoutManager = new GridLayoutManager(this,3);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mPhotoList = new ArrayList<>();
@@ -117,6 +118,7 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
                 break;
             case "Mirage":
                 cat_logo.setImageResource(R.drawable.mirage_excl);
+                appBar_Cat.setBackgroundResource(R.drawable.cat_top_mirage);
                 break;
             case "Control":
                 cat_logo.setImageResource(R.drawable.control_lg);

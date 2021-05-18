@@ -3,6 +3,7 @@
     <color name="purple_200">#FFBB86FC</color>
     <color name="start_back">#232D3B</color>
     <color name="appBar">#1C2634</color>
+    <color name="redRefresh">#FE002A</color>
     <color name="off_black">#222222</color>
     <color name="red_fab">#FF3434</color>
     <color name="purple_500">#FF6200EE</color>

@@ -99,7 +99,7 @@ public class PhotoActivity extends AppCompatActivity {
             url = photo.getUrl_o();
         }
         imageName = photo.getTitle()+photo.getId()+".jpg";
-        Picasso.get().load(url).into(imageView, new Callback() {
+        Picasso.get().load(url).placeholder(R.drawable.preloader_logo).into(imageView, new Callback() {
             @Override
             public void onSuccess() {
                 //View

@@ -141,6 +141,7 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
                 //Collections.sort(mPhotoList,compareByRatio);
                 Log.d("foto5","working");
                 mAdapter.notifyDataSetChanged();
+                refreshHome.setRefreshing(false);
             }
 
             @Override
@@ -179,9 +180,16 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
         return v;
     }
 
+    @Override
+    public void onResume() {
+        refreshHome.setColorSchemeColors(getResources().getColor(R.color.redRefresh, getActivity().getTheme()));
+        refreshHome.setRefreshing(true);
+        super.onResume();
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        refreshHome.setRefreshing(false);
         super.onViewCreated(view, savedInstanceState);
 
     }
