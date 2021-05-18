@@ -33,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.helixios.helixioswall.database.HelixDatabase;
 import com.helixios.helixioswall.model.Photo;
@@ -60,6 +61,8 @@ public class PhotoActivity extends AppCompatActivity {
         //postponeEnterTransition();
 
         ImageView imageView = findViewById(R.id.photo_full);
+        LottieAnimationView preloader_photo = findViewById(R.id.animation_preloader_photo);
+        preloader_photo.setVisibility(View.VISIBLE);
         ImageView back_button = findViewById(R.id.back_button);
         TextView textView = findViewById(R.id.creator_photo_full);
         TextView favText = findViewById(R.id.add_fav_text);
@@ -103,6 +106,7 @@ public class PhotoActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 //View
+                preloader_photo.setVisibility(View.GONE);
                 ActivityCompat.startPostponedEnterTransition(PhotoActivity.this);
             }
 

@@ -136,10 +136,10 @@ public class FullscreenActivity extends AppCompatActivity {
         fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
         fade.excludeTarget(android.R.id.statusBarBackground, true);
         fade.excludeTarget(android.R.id.navigationBarBackground, true);
-        fade.setDuration(1500);
+        fade.setDuration(1000);
         getWindow().setEnterTransition(fade);
         getWindow().setExitTransition(fade);
-        getWindow().setSharedElementEnterTransition(new ChangeBounds().setDuration(800));
+        getWindow().setSharedElementEnterTransition(new ChangeBounds().setDuration(500));
 
         //Set Internet listener here
 
@@ -196,7 +196,7 @@ public class FullscreenActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
 
-                anim_logo.setRepeatCount(2);
+                anim_logo.setRepeatCount(0);
                 anim_logo.playAnimation();
                 anim_logo.addAnimatorListener(new AnimatorListenerAdapter() {
                     @Override
@@ -222,11 +222,6 @@ public class FullscreenActivity extends AppCompatActivity {
 //    }
 
 
-    @Override
-    protected void onResume() {
-
-        super.onResume();
-    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -236,14 +231,6 @@ public class FullscreenActivity extends AppCompatActivity {
         // created, to briefly hint to the user that UI controls
         // are available.
         delayedHide(100);
-    }
-
-    private void toggle() {
-        if (mVisible) {
-            hide();
-        } else {
-            show();
-        }
     }
 
     private void hide() {

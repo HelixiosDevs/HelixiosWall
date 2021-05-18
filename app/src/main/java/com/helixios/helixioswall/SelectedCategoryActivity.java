@@ -11,7 +11,9 @@ import retrofit2.Response;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.helixios.helixioswall.adapters.RecyclerViewAdapter;
@@ -53,6 +55,7 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
         mRecyclerView = findViewById(R.id.recycler_view_cat);
         refreshCat = findViewById(R.id.swipeRefresh_cat);
         ImageView cat_logo = findViewById(R.id.logo_cat);
+        TextView cat_text = findViewById(R.id.cat_text);
         AppBarLayout appBar_Cat = findViewById(R.id.appbar_cat);
         mLayoutManager = new GridLayoutManager(this,3);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -115,6 +118,7 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
         switch (category) {
             case "Helixios":
                 cat_logo.setImageResource(R.drawable.helixios_excl);
+                appBar_Cat.setBackgroundResource(R.drawable.cat_top_helixios);
                 break;
             case "Mirage":
                 cat_logo.setImageResource(R.drawable.mirage_excl);
@@ -122,6 +126,10 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
                 break;
             case "Light":
             case "Dark":
+                cat_logo.setVisibility(View.GONE);
+                cat_text.setVisibility(View.VISIBLE);
+                cat_text.setText(category);
+                break;
             case "Control":
                 cat_logo.setImageResource(R.drawable.control_lg);
                 break;

@@ -61,6 +61,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/heli_ico" />
+            <TextView
+                android:id="@+id/cat_text"
+                android:fontFamily="@font/lemonmilk_reg"
+                android:textSize="40sp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:shadowColor="#54000000"
+                android:shadowDx="0"
+                android:shadowDy="10"
+                android:shadowRadius="6"
+                android:layout_width="205dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -114,6 +114,8 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
 
         //mPhotoList stores all the instances of Photos
         mPhotoList = new ArrayList<>();
+        refreshHome.setColorSchemeColors(getResources().getColor(R.color.redRefresh, getActivity().getTheme()));
+        refreshHome.setRefreshing(true);
 
         flickrApi = RetrofitClient.getClient().create(FlickrApi.class);
         Call<SearchPhotos> call = flickrApi.getHomePhotos();
@@ -171,9 +173,9 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
 
                     @Override
                     public void onFailure(Call<SearchPhotos> call, Throwable t) {
-
                     }
                 });
+                refreshHome.setRefreshing(false);
             }
         });
 
@@ -181,17 +183,8 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
     }
 
     @Override
-    public void onResume() {
-        refreshHome.setColorSchemeColors(getResources().getColor(R.color.redRefresh, getActivity().getTheme()));
-        refreshHome.setRefreshing(true);
-        super.onResume();
-    }
-
-    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        refreshHome.setRefreshing(false);
         super.onViewCreated(view, savedInstanceState);
-
     }
 
     @Override
