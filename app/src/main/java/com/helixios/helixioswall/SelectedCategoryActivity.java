@@ -120,6 +120,8 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
                 cat_logo.setImageResource(R.drawable.mirage_excl);
                 appBar_Cat.setBackgroundResource(R.drawable.cat_top_mirage);
                 break;
+            case "Light":
+            case "Dark":
             case "Control":
                 cat_logo.setImageResource(R.drawable.control_lg);
                 break;

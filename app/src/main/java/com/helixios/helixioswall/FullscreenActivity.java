@@ -1,5 +1,7 @@
 package com.helixios.helixioswall;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.TimeInterpolator;
 import android.annotation.SuppressLint;
 
@@ -7,7 +9,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +26,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -106,13 +118,18 @@ public class FullscreenActivity extends AppCompatActivity {
         }
     };
 
+    ImageView logo;
+    LottieAnimationView anim_logo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
 
         mVisible = true;
-        ImageView logo = (ImageView) findViewById(R.id.logo_1);
+        logo = (ImageView) findViewById(R.id.logo_1);
+        anim_logo = findViewById(R.id.animationView);
+        ImageView invisi = findViewById(R.id.invisible);
 
         Fade fade = new Fade();
         View decor = getWindow().getDecorView();
@@ -125,8 +142,6 @@ public class FullscreenActivity extends AppCompatActivity {
         getWindow().setSharedElementEnterTransition(new ChangeBounds().setDuration(800));
 
         //Set Internet listener here
-
-
 
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +160,72 @@ public class FullscreenActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
 
+//        if(!isOnline()) {
+//            Toast.makeText(this, "Make sure your device is connected to Internet",Toast.LENGTH_LONG).show();
+//            while(!isOnline()) {
+//                continue;
+//            }
+//            Log.d("anim", "onCreate: "+isOnline());
+//            anim_logo.setVisibility(View.GONE);
+//            logo.setVisibility(View.VISIBLE);
+//            logo.callOnClick();
+//        }
+//        boolean val = false;
+//        Thread t1 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Log.d("anim", "run: "+isOnline());
+//                while(!isOnline()) {
+//                    Log.d("anim", "run-2: "+isOnline());
+//                    continue;
+//                }
+//                boolean val = isOnline();
+//                Log.d("anim", "run-3: "+isOnline());
+//            }
+//        });
+//        t1.start();
+//        while(t1.isAlive()) {
+//            continue;
+//        }
+//        if(val) {
+//            anim_logo.setVisibility(View.GONE);
+//            logo.setVisibility(View.VISIBLE);
+//            logo.callOnClick();
+//        }
+        Picasso.get().load("https://farm66.staticflickr.com/65535/51158080509_e19471d1f2_b.jpg").into(invisi, new Callback() {
+            @Override
+            public void onSuccess() {
+
+                anim_logo.setRepeatCount(2);
+                anim_logo.playAnimation();
+                anim_logo.addAnimatorListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        anim_logo.setVisibility(View.GONE);
+                        logo.setVisibility(View.VISIBLE);
+                        logo.callOnClick();
+                        super.onAnimationEnd(animation);
+                    }
+                });
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
+
+    }
+
+//    public void onlineVerified() {
+//
+//    }
+
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
     }
 
     @Override
@@ -196,5 +277,19 @@ public class FullscreenActivity extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    public boolean isOnline() {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int     exitValue = ipProcess.waitFor();
+            Log.i("anim", "isOnline: value prob"+exitValue);
+            return (exitValue == 1);
+        }
+        catch (IOException e)          { e.printStackTrace(); }
+        catch (InterruptedException e) { e.printStackTrace(); }
+
+        return false;
     }
 }

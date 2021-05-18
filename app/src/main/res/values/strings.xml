@@ -8,6 +8,8 @@
 
     <string name="cat_helix">HELIXIOS exclusive</string>
     <string name="cat_mirage">MIRAGE exclusive</string>
+    <string name="cat_light">Light</string>
+    <string name="cat_dark">Dark</string>
     <string name="cat_land">LANDSCAPE adjusted</string>
     <string name="cat_forza">FORZA</string>
     <string name="cat_track">TRACKMANIA</string>

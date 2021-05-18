@@ -81,6 +81,10 @@ public class category_frag extends Fragment implements View.OnClickListener {
         card_helix.setOnClickListener(this);
         CardView card_mirage = v.findViewById(R.id.card_Mirage);
         card_mirage.setOnClickListener(this);
+        CardView card_light = v.findViewById(R.id.card_Light);
+        card_light.setOnClickListener(this);
+        CardView card_dark = v.findViewById(R.id.card_Dark);
+        card_dark.setOnClickListener(this);
         CardView card_control = v.findViewById(R.id.card_Control);
         card_control.setOnClickListener(this);
         CardView card_forza = v.findViewById(R.id.card_Forza);
@@ -117,6 +121,16 @@ public class category_frag extends Fragment implements View.OnClickListener {
                 tags = null;
                 user_id = "151660254@N04";
                 cat = "Mirage";
+                break;
+            case R.id.card_Light:
+                tags = "light";
+                user_id = null;
+                cat = "Light";
+                break;
+            case R.id.card_Dark:
+                tags = "dark";
+                user_id = null;
+                cat = "Dark";
                 break;
             case R.id.card_Control:
                 tags ="control";

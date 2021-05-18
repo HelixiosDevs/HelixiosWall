@@ -252,6 +252,73 @@
             app:layout_constraintStart_toStartOf="@id/guidefull_1"
             app:layout_constraintTop_toBottomOf="@id/constlay_1">
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_Light"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/light_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54000000"
+                    android:shadowDx="0"
+                    android:shadowDy="10"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_light"
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_Dark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintDimensionRatio="w,2.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:clickable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/dark_bg"
+                    android:fontFamily="@font/lemonmilk_reg"
+                    android:gravity="center"
+                    android:shadowColor="#54FFFFFF"
+                    android:shadowDx="0"
+                    android:shadowDy="14"
+                    android:shadowRadius="6"
+                    android:text="@string/cat_dark"
+                    android:textColor="@color/white"
+                    android:textSize="17dp" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constlay_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            app:layout_constraintDimensionRatio="h,5:1"
+            app:layout_constraintEnd_toStartOf="@id/guidefull_3"
+            app:layout_constraintStart_toStartOf="@id/guidefull_1"
+            app:layout_constraintTop_toBottomOf="@id/constlay_2">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_Control"
@@ -312,15 +379,14 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constlay_3"
+            android:id="@+id/constlay_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
             app:layout_constraintDimensionRatio="h,5:1"
             app:layout_constraintEnd_toStartOf="@id/guidefull_3"
             app:layout_constraintStart_toStartOf="@id/guidefull_1"
-            app:layout_constraintTop_toBottomOf="@id/constlay_2">
-
+            app:layout_constraintTop_toBottomOf="@id/constlay_3">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_Track"
@@ -378,18 +444,18 @@
                     android:textSize="17dp" />
             </androidx.cardview.widget.CardView>
 
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constlay_4"
+            android:id="@+id/constlay_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
             app:layout_constraintDimensionRatio="h,5:1"
             app:layout_constraintEnd_toStartOf="@id/guidefull_3"
             app:layout_constraintStart_toStartOf="@id/guidefull_1"
-            app:layout_constraintTop_toBottomOf="@id/constlay_3">
-
+            app:layout_constraintTop_toBottomOf="@id/constlay_4">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_DS"
@@ -447,18 +513,20 @@
                     android:textSize="17dp" />
             </androidx.cardview.widget.CardView>
 
+
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constlay_5"
+            android:id="@+id/constlay_6"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
             app:layout_constraintDimensionRatio="h,5:1"
             app:layout_constraintEnd_toStartOf="@id/guidefull_3"
             app:layout_constraintStart_toStartOf="@id/guidefull_1"
-            app:layout_constraintTop_toBottomOf="@id/constlay_4">
-
+            app:layout_constraintTop_toBottomOf="@id/constlay_5">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_Watch"
@@ -517,18 +585,20 @@
                     android:textSize="17dp" />
             </androidx.cardview.widget.CardView>
 
+
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constlay_6"
+            android:id="@+id/constlay_7"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
             app:layout_constraintDimensionRatio="h,5:1"
             app:layout_constraintEnd_toStartOf="@id/guidefull_3"
             app:layout_constraintStart_toStartOf="@id/guidefull_1"
-            app:layout_constraintTop_toBottomOf="@id/constlay_5">
-
+            app:layout_constraintTop_toBottomOf="@id/constlay_6">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_half"
@@ -586,72 +656,6 @@
                     android:textSize="17dp" />
             </androidx.cardview.widget.CardView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constlay_7"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            app:layout_constraintDimensionRatio="h,5:1"
-            app:layout_constraintEnd_toStartOf="@id/guidefull_3"
-            app:layout_constraintStart_toStartOf="@id/guidefull_1"
-            app:layout_constraintTop_toBottomOf="@id/constlay_6">
-
-
-            <!--            <androidx.cardview.widget.CardView-->
-            <!--                android:id="@+id/catCard_13"-->
-            <!--                android:layout_width="0dp"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                app:cardCornerRadius="5dp"-->
-            <!--                app:cardElevation="3dp"-->
-            <!--                app:cardUseCompatPadding="true"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintDimensionRatio="w,2.5:1"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent">-->
-
-            <!--                <TextView-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_gravity="center"-->
-            <!--                    android:background="@drawable/control_bg"-->
-            <!--                    android:fontFamily="@font/lemonmilk_reg"-->
-            <!--                    android:gravity="center"-->
-            <!--                    android:shadowColor="#54000000"-->
-            <!--                    android:shadowDx="0"-->
-            <!--                    android:shadowDy="3"-->
-            <!--                    android:shadowRadius="6"-->
-            <!--                    android:text="@string/cat_control"-->
-            <!--                    android:textColor="@color/white"-->
-            <!--                    android:textSize="16sp" />-->
-            <!--            </androidx.cardview.widget.CardView>-->
-
-            <!--            <androidx.cardview.widget.CardView-->
-            <!--                android:id="@+id/catCard_14"-->
-            <!--                android:layout_width="0dp"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                app:cardCornerRadius="5dp"-->
-            <!--                app:cardElevation="8dp"-->
-            <!--                app:layout_constraintDimensionRatio="w,3:1"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" >-->
-
-            <!--                <TextView-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_gravity="center"-->
-            <!--                    android:background="@drawable/justcause_bg"-->
-            <!--                    android:fontFamily="@font/lemonmilk_reg"-->
-            <!--                    android:gravity="center"-->
-            <!--                    android:shadowColor="#54000000"-->
-            <!--                    android:shadowDx="0"-->
-            <!--                    android:shadowDy="3"-->
-            <!--                    android:shadowRadius="6"-->
-            <!--                    android:text="@string/cat_jc"-->
-            <!--                    android:textColor="@color/white"-->
-            <!--                    android:textSize="18sp" />-->
-            <!--            </androidx.cardview.widget.CardView>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
