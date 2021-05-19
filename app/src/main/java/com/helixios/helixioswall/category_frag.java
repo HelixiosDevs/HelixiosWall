@@ -196,29 +196,6 @@ public class category_frag extends Fragment implements View.OnClickListener {
         Log.d("cat22", "onCreate: "+tags+" t--u "+user_id+cat);
         startActivity(intent);
 
-//        call.enqueue(new Callback<SearchPhotos>() {
-//            @Override
-//            public void onResponse(Call<SearchPhotos> call, Response<SearchPhotos> response) {
-//                if (!response.isSuccessful()) {
-//                    Log.d("API", String.valueOf(response.code()));
-//                    Log.d("suces", String.valueOf(response.isSuccessful()));
-//                }
-//                foto = response.body();
-//
-//                Log.d("foto", String.valueOf(foto.getPhotosNest().getPhotos_list().get(0).getUrl_z()));
-//                mPhotoList.addAll(foto.getPhotosNest().getPhotos_list());
-//                Log.i("foto", String.valueOf(mPhotoList.size()));
-//                Collections.shuffle(mPhotoList);
-//                //Collections.sort(mPhotoList,compareByRatio);
-//                Log.d("foto5","working");
-//                mAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<SearchPhotos> call, Throwable t) {
-//
-//            }
-//        });
     }
 
 }

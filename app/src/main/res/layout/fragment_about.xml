@@ -224,7 +224,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FF1A3F"
                 android:fontFamily="@font/lemonmilk_med"
-                android:text="DONATE"
+                android:text="CONTRIBUTE"
                 android:textColor="@color/white" />
         </LinearLayout>
 
