@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -20,6 +21,7 @@ import android.transition.ChangeBounds;
 import android.transition.Explode;
 import android.transition.Fade;
 import android.transition.Slide;
+import android.transition.Transition;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -123,6 +125,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_HelixiosWall_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
 
@@ -139,7 +142,7 @@ public class FullscreenActivity extends AppCompatActivity {
         fade.setDuration(1000);
         getWindow().setEnterTransition(fade);
         getWindow().setExitTransition(fade);
-        getWindow().setSharedElementEnterTransition(new ChangeBounds().setDuration(500));
+        //getWindow().setSharedElementEnterTransition(new ChangeBounds().setDuration(500));
 
         //Set Internet listener here
 
@@ -192,36 +195,30 @@ public class FullscreenActivity extends AppCompatActivity {
 //            logo.setVisibility(View.VISIBLE);
 //            logo.callOnClick();
 //        }
-        Picasso.get().load("https://farm66.staticflickr.com/65535/51158080509_e19471d1f2_b.jpg").into(invisi, new Callback() {
+
+//        final Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                // Do something after 5s = 5000ms
+//                anim_logo.setRepeatCount(0);
+//                anim_logo.playAnimation();
+//            }
+//        }, 500);
+
+        anim_logo.setRepeatCount(0);
+        anim_logo.playAnimation();
+        anim_logo.addAnimatorListener(new AnimatorListenerAdapter() {
             @Override
-            public void onSuccess() {
-
-                anim_logo.setRepeatCount(0);
-                anim_logo.playAnimation();
-                anim_logo.addAnimatorListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        anim_logo.setVisibility(View.GONE);
-                        logo.setVisibility(View.VISIBLE);
-                        logo.callOnClick();
-                        super.onAnimationEnd(animation);
-                    }
-                });
-            }
-
-            @Override
-            public void onError(Exception e) {
-
+            public void onAnimationEnd(Animator animation) {
+                anim_logo.setVisibility(View.GONE);
+                logo.setVisibility(View.VISIBLE);
+                logo.callOnClick();
+                super.onAnimationEnd(animation);
             }
         });
 
     }
-
-//    public void onlineVerified() {
-//
-//    }
-
-
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

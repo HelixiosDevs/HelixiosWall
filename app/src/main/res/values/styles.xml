@@ -17,4 +17,7 @@
         <item name="android:textColorPrimaryInverse">@color/white</item>
         <item name="colorControlNormal">@color/white</item>
     </style>
+    <style name="SplashScreenTheme" parent="@style/Theme.HelixiosWall.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
 </resources>

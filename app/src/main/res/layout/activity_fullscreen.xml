@@ -40,8 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
         app:lottie_rawRes="@raw/helixios_walls_reveal"
         app:lottie_enableMergePathsForKitKatAndAbove="true"
         app:lottie_scale="0.25" />

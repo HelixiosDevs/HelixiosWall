@@ -71,6 +71,8 @@ public class about_frag extends Fragment {
         ImageView youtube_url = view.findViewById(R.id.imageView6);
         ImageView tele_url = view.findViewById(R.id.imageView7);
         ImageView discord_url = view.findViewById(R.id.imageView8);
+        LinearLayout linkedin_dt = view.findViewById(R.id.linkedin_dt);
+        LinearLayout linkedin_ac = view.findViewById(R.id.linkedin_ac);
 
         helix_url.setOnClickListener(view1 -> gotoUrl("http://www.helixios-esports.tech/"));
         insta_url.setOnClickListener(view12 -> gotoUrl("https://www.instagram.com/helixios.corp/"));
@@ -78,6 +80,8 @@ public class about_frag extends Fragment {
         youtube_url.setOnClickListener(view14 -> gotoUrl("https://www.youtube.com/HelixiosCorp"));
         tele_url.setOnClickListener(view15 -> gotoUrl("https://t.me/helixioscorp"));
         discord_url.setOnClickListener(view16 -> gotoUrl("https://discord.com/invite/tpNjxdr"));
+        linkedin_dt.setOnClickListener(view17 -> gotoUrl("https://www.linkedin.com/in/divyansh-tripathi-in/"));
+        linkedin_ac.setOnClickListener(view18 -> gotoUrl("https://www.linkedin.com/in/aditya-chaudhary-50a680a6/"));
 
         return view;
     }

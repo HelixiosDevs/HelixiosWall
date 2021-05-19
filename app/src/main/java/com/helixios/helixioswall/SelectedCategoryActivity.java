@@ -125,10 +125,17 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
                 appBar_Cat.setBackgroundResource(R.drawable.cat_top_mirage);
                 break;
             case "Light":
+                cat_logo.setVisibility(View.GONE);
+                cat_text.setVisibility(View.VISIBLE);
+                cat_text.setText(category);
+                appBar_Cat.setBackgroundResource(R.drawable.light_top_shade);
+                cat_text.setTextColor(getResources().getColor(R.color.black,getTheme()));
+                break;
             case "Dark":
                 cat_logo.setVisibility(View.GONE);
                 cat_text.setVisibility(View.VISIBLE);
                 cat_text.setText(category);
+                appBar_Cat.setBackgroundResource(R.drawable.dark_top_shade);
                 break;
             case "Control":
                 cat_logo.setImageResource(R.drawable.control_lg);
