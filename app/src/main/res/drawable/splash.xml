@@ -5,9 +5,9 @@
         <bitmap
             android:gravity="center"
             android:src="@drawable/background"
-            android:tint="#1C2634"
+            android:tint="#161e2a"
             android:tintMode="add"
-            android:alpha="0.7"
+            android:alpha="0.15"
             />
     </item>
 

@@ -19,11 +19,12 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.7"
-        android:foreground="@color/appBar"
         android:layout_gravity="center"
+        android:alpha="0.15"
         android:scaleType="centerCrop"
-        android:src="@drawable/background" />
+        android:src="@drawable/background"
+        android:tintMode="add"
+        app:tint="#161e2a" />
 
     <ImageView
             android:id="@+id/logo_1"
