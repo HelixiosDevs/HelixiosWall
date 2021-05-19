@@ -206,8 +206,8 @@ public class FullscreenActivity extends AppCompatActivity {
 //            }
 //        }, 500);
 
-        anim_logo.setRepeatCount(0);
-        anim_logo.playAnimation();
+//        anim_logo.setRepeatCount(0);
+//        anim_logo.playAnimation();
         anim_logo.addAnimatorListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -218,6 +218,27 @@ public class FullscreenActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onActivityReenter(int resultCode, Intent data) {
+        anim_logo.setRepeatCount(0);
+        anim_logo.playAnimation();
+        super.onActivityReenter(resultCode, data);
+    }
+
+    @Override
+    protected void onResume() {
+        anim_logo.setRepeatCount(0);
+        anim_logo.playAnimation();
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        anim_logo.setVisibility(View.VISIBLE);
+        logo.setVisibility(View.INVISIBLE);
+        super.onStop();
     }
 
     @Override
@@ -263,17 +284,17 @@ public class FullscreenActivity extends AppCompatActivity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
-    public boolean isOnline() {
-        Runtime runtime = Runtime.getRuntime();
-        try {
-            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
-            int     exitValue = ipProcess.waitFor();
-            Log.i("anim", "isOnline: value prob"+exitValue);
-            return (exitValue == 1);
-        }
-        catch (IOException e)          { e.printStackTrace(); }
-        catch (InterruptedException e) { e.printStackTrace(); }
-
-        return false;
-    }
+//    public boolean isOnline() {
+//        Runtime runtime = Runtime.getRuntime();
+//        try {
+//            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+//            int     exitValue = ipProcess.waitFor();
+//            Log.i("anim", "isOnline: value prob"+exitValue);
+//            return (exitValue == 1);
+//        }
+//        catch (IOException e)          { e.printStackTrace(); }
+//        catch (InterruptedException e) { e.printStackTrace(); }
+//
+//        return false;
+//    }
 }

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:opacity="opaque">
-    <item android:drawable="@drawable/splash_bg" />
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/background"
+            android:tint="#1C2634"
+            android:tintMode="add"
+            android:alpha="0.7"
+            />
+    </item>
+
 </layer-list>

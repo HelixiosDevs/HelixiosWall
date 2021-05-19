@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.helixios.helixioswall.R;
 import com.helixios.helixioswall.model.Photo;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -48,7 +50,21 @@ public class RecyclerViewAdapterFavourite extends RecyclerView.Adapter<RecyclerV
 
         Log.d("pix",id+"- is ID -"+title+"-is Title.");
         Log.d("pix",url_z);
-        Picasso.get().load(url_z).placeholder(R.drawable.preloader_logo).fit().centerCrop().into(holder.mImageView);
+        holder.mImageView.setVisibility(View.INVISIBLE);
+        LottieAnimationView anim_preloader = holder.itemView.findViewById(R.id.animation_preloader_fave);
+        anim_preloader.setVisibility(View.VISIBLE);
+        Picasso.get().load(url_z).fit().centerCrop().into(holder.mImageView, new Callback() {
+            @Override
+            public void onSuccess() {
+                anim_preloader.setVisibility(View.GONE);
+                holder.mImageView.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
 
     }
 
