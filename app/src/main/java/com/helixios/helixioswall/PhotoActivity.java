@@ -131,7 +131,7 @@ public class PhotoActivity extends AppCompatActivity {
         Log.d("foto", "onCreate:"+photo.getOwner_name());
         downloadClick.setOnClickListener(v -> {
             downloadImage(down_url,imageName);
-            Toast.makeText(PhotoActivity.this,"Download maybe started",Toast.LENGTH_LONG).show();
+            Toast.makeText(PhotoActivity.this,"Download started",Toast.LENGTH_LONG).show();
         });
 
         setWallClick.setOnClickListener(v -> {
@@ -208,7 +208,7 @@ public class PhotoActivity extends AppCompatActivity {
         path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()+ File.separator + imageName;
         Log.i("cop", String.valueOf(MediaStore.Images.Media.getContentUri(imageName)));
 
-        Toast.makeText(this,"Downloading photo. Pls wait for the download to complete.",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Downloading and setting wallpaper",Toast.LENGTH_LONG).show();
 //Moved this code to BroadcastReceiver to execute according to the download
 //        Uri uri = FileProvider.getUriForFile(this, "com.helixios.helixioswall.fileprovider", new File(path));
 //        Intent wallMan =WallpaperManager.getInstance(this).getCropAndSetWallpaperIntent(uri);
