@@ -284,17 +284,4 @@ public class FullscreenActivity extends AppCompatActivity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
-//    public boolean isOnline() {
-//        Runtime runtime = Runtime.getRuntime();
-//        try {
-//            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
-//            int     exitValue = ipProcess.waitFor();
-//            Log.i("anim", "isOnline: value prob"+exitValue);
-//            return (exitValue == 1);
-//        }
-//        catch (IOException e)          { e.printStackTrace(); }
-//        catch (InterruptedException e) { e.printStackTrace(); }
-//
-//        return false;
-//    }
 }

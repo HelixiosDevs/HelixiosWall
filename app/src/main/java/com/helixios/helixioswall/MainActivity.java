@@ -12,12 +12,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.transition.ChangeBounds;
 import android.transition.Fade;
 import android.transition.Transition;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.helixios.helixioswall.database.HelixDatabase;
 import com.helixios.helixioswall.ui.main.SectionsPagerAdapter;
 import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -80,6 +83,14 @@ public class MainActivity extends AppCompatActivity {
             TabLayout.Tab tab = tabs.getTabAt(i);
             tab.setIcon(TAB_ICONS[i]);
         }
+//        Thread t1 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                if(isOnline()) {
+//
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -93,5 +104,18 @@ public class MainActivity extends AppCompatActivity {
             this.moveTaskToBack(true);
             super.onBackPressed();
         }
+    }
+    public boolean isOnline() {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int     exitValue = ipProcess.waitFor();
+            Log.i("anim", "isOnline: value prob"+exitValue);
+            return (exitValue == 1);
+        }
+        catch (IOException e)          { e.printStackTrace(); }
+        catch (InterruptedException e) { e.printStackTrace(); }
+
+        return false;
     }
 }

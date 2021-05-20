@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -73,6 +74,7 @@ public class about_frag extends Fragment {
         ImageView discord_url = view.findViewById(R.id.imageView8);
         LinearLayout linkedin_dt = view.findViewById(R.id.linkedin_dt);
         LinearLayout linkedin_ac = view.findViewById(R.id.linkedin_ac);
+        Button contribute = view.findViewById(R.id.button2);
 
         helix_url.setOnClickListener(view1 -> gotoUrl("http://www.helixios-esports.tech/"));
         insta_url.setOnClickListener(view12 -> gotoUrl("https://www.instagram.com/helixios.corp/"));
@@ -82,6 +84,7 @@ public class about_frag extends Fragment {
         discord_url.setOnClickListener(view16 -> gotoUrl("https://discord.com/invite/tpNjxdr"));
         linkedin_dt.setOnClickListener(view17 -> gotoUrl("https://www.linkedin.com/in/divyansh-tripathi-in/"));
         linkedin_ac.setOnClickListener(view18 -> gotoUrl("https://www.linkedin.com/in/aditya-chaudhary-50a680a6/"));
+        contribute.setOnClickListener(view19 -> gotoUrl("https://www.flickr.com/groups/14741456@N25/discuss/72157719228128509/"));
 
         return view;
     }

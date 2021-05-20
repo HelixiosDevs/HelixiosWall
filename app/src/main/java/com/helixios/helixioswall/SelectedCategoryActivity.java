@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.appbar.AppBarLayout;
@@ -30,6 +31,7 @@ import java.util.Collections;
 public class SelectedCategoryActivity extends AppCompatActivity implements RecyclerViewAdapter.OnPhotoListener {
 
     private RecyclerView mRecyclerView;
+    private LinearLayout no_net_cat;
     private SwipeRefreshLayout refreshCat;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerViewCategoryAdapter mCatAdapter;
@@ -53,6 +55,7 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
         }
 
         mRecyclerView = findViewById(R.id.recycler_view_cat);
+        no_net_cat = findViewById(R.id.no_net_cat);
         refreshCat = findViewById(R.id.swipeRefresh_cat);
         ImageView cat_logo = findViewById(R.id.logo_cat);
         TextView cat_text = findViewById(R.id.cat_text);
@@ -75,7 +78,7 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
                     Log.d("API", String.valueOf(response.code()));
                     Log.d("suces", String.valueOf(response.isSuccessful()));
                 }
-//                mSearchPhotos = new ArraList<>(response.body());
+//                mSearchPhotos = new ArrayList<>(response.body());
 //                for(SearchPhotos pics:mSearchPhotos) {
 //                    mPhotoList.addAll(pics.getPhotosNest().getPhotos_list());
 //                }
@@ -93,6 +96,9 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
             @Override
             public void onFailure(Call<SearchPhotos> call, Throwable t) {
                 Log.e("Err", "onFailure: "+t.toString() );
+                no_net_cat.setVisibility(View.VISIBLE);
+                mRecyclerView.setVisibility(View.GONE);
+                refreshCat.setRefreshing(false);
             }
         });
         refreshCat.setOnRefreshListener(() -> {
@@ -101,6 +107,10 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
                 @Override
                 public void onResponse(Call<SearchPhotos> call1, Response<SearchPhotos> response) {
                     foto = response.body();
+
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                    no_net_cat.setVisibility(View.GONE);
+
                     mPhotoList.addAll(foto.getPhotosNest().getPhotos_list());
                     Collections.shuffle(mPhotoList);
                     //Collections.sort(mPhotoList,compareByRatio);
@@ -110,9 +120,9 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
 
                 @Override
                 public void onFailure(Call<SearchPhotos> call1, Throwable t) {
-
                 }
             });
+            refreshCat.setRefreshing(false);
         });
 
         switch (category) {

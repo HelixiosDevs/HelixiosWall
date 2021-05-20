@@ -52,11 +52,12 @@ public class RecyclerViewCategoryAdapter extends RecyclerView.Adapter<RecyclerVi
         Log.d("pix",url_z);
         holder.mImageView.setVisibility(View.INVISIBLE);
         LottieAnimationView anim_preloader = holder.itemView.findViewById(R.id.animation_preloader);
-        LinearLayout lin_anim = holder.itemView.findViewById(R.id.lin_anim_fave);
+        LinearLayout lin_anim = holder.itemView.findViewById(R.id.lin_anim);
         anim_preloader.setVisibility(View.VISIBLE);
         Picasso.get().load(url_z).fit().centerCrop().into(holder.mImageView, new Callback() {
             @Override
             public void onSuccess() {
+                Log.i("pixi", "onSuccess: "+position);
                 anim_preloader.setVisibility(View.GONE);
                 holder.mImageView.setVisibility(View.VISIBLE);
                 lin_anim.setVisibility(View.GONE);

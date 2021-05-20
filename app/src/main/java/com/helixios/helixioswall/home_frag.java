@@ -1,5 +1,6 @@
 package com.helixios.helixioswall;
 
+import android.accounts.NetworkErrorException;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -31,6 +32,7 @@ import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEventSource;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.helixios.helixioswall.adapters.RecyclerViewAdapter;
 import com.helixios.helixioswall.model.Photo;
@@ -38,6 +40,7 @@ import com.helixios.helixioswall.model.SearchPhotos;
 import com.helixios.helixioswall.networking.FlickrApi;
 import com.helixios.helixioswall.networking.RetrofitClient;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -64,6 +67,7 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerViewAdapter mAdapter;
     private SwipeRefreshLayout refreshHome;
+    private LinearLayout no_net_home;
     private List<SearchPhotos> mSearchPhotos;
     private SearchPhotos foto ;
     private ArrayList<Photo> mPhotoList;
@@ -108,6 +112,7 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
         refreshHome = v.findViewById(R.id.swipeRefresh_home);
+        no_net_home = v.findViewById(R.id.no_net_home);
         mRecyclerView = v.findViewById(R.id.recycler_view_home);
         mLayoutManager = new GridLayoutManager(getActivity(),3);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -149,6 +154,9 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
             @Override
             public void onFailure(Call<SearchPhotos> call, Throwable t) {
                 Log.e("Err", t.getMessage());
+                no_net_home.setVisibility(View.VISIBLE);
+                mRecyclerView.setVisibility(View.GONE);
+                refreshHome.setRefreshing(false);
             }
         });
 
@@ -160,6 +168,9 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
                     @Override
                     public void onResponse(Call<SearchPhotos> call, Response<SearchPhotos> response) {
                         foto = response.body();
+
+                        no_net_home.setVisibility(View.GONE);
+                        mRecyclerView.setVisibility(View.VISIBLE);
 
                         Log.d("foto", String.valueOf(foto.getPhotosNest().getPhotos_list().get(0).getUrl_z()));
                         mPhotoList.addAll(foto.getPhotosNest().getPhotos_list());
@@ -173,6 +184,7 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
 
                     @Override
                     public void onFailure(Call<SearchPhotos> call, Throwable t) {
+                        Log.e("foto", "onFailure: "+t.toString()+"wifi" );
                     }
                 });
                 refreshHome.setRefreshing(false);
@@ -234,5 +246,18 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
 //        else
 //            return 0;
 //    };
+    public boolean isOnline() {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int     exitValue = ipProcess.waitFor();
+            Log.i("anim", "isOnline: value prob"+exitValue);
+            return (exitValue == 1);
+        }
+        catch (IOException e)          { e.printStackTrace(); }
+        catch (InterruptedException e) { e.printStackTrace(); }
+
+        return false;
+    }
 }
 
