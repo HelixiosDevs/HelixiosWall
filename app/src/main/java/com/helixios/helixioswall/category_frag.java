@@ -119,7 +119,7 @@ public class category_frag extends Fragment implements View.OnClickListener {
                 break;
             case R.id.card_Mirage:
                 tags = null;
-                user_id = "151660254@N04";
+                user_id = "193113131@N08";
                 cat = "Mirage";
                 break;
             case R.id.card_Light:

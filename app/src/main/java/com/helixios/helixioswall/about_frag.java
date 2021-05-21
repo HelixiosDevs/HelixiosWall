@@ -80,7 +80,7 @@ public class about_frag extends Fragment {
         insta_url.setOnClickListener(view12 -> gotoUrl("https://www.instagram.com/helixios.corp/"));
         facebook_url.setOnClickListener(view13 -> gotoUrl("https://www.facebook.com/helixios.corp"));
         youtube_url.setOnClickListener(view14 -> gotoUrl("https://www.youtube.com/HelixiosCorp"));
-        tele_url.setOnClickListener(view15 -> gotoUrl("https://t.me/helixioscorp"));
+        tele_url.setOnClickListener(view15 -> gotoUrl("https://t.me/helixiosesports"));
         discord_url.setOnClickListener(view16 -> gotoUrl("https://discord.com/invite/tpNjxdr"));
         linkedin_dt.setOnClickListener(view17 -> gotoUrl("https://www.linkedin.com/in/divyansh-tripathi-in/"));
         linkedin_ac.setOnClickListener(view18 -> gotoUrl("https://www.linkedin.com/in/aditya-chaudhary-50a680a6/"));

@@ -101,7 +101,7 @@ public class PhotoActivity extends AppCompatActivity {
         else {
             url = photo.getUrl_o();
         }
-        imageName = photo.getTitle()+photo.getId()+".jpg";
+        imageName = "HW_Assets_"+photo.getId()+".jpg";
         Picasso.get().load(url).into(imageView, new Callback() {
             @Override
             public void onSuccess() {
