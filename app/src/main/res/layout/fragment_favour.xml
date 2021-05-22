@@ -11,7 +11,8 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh_fav"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingHorizontal="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,7 +81,7 @@
                         android:textColor="#FF1A3F"
                         android:textSize="14sp"
                         android:clickable="true"
-                        android:layout_marginRight="2dp"/>
+                        android:layout_marginRight="4sp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
