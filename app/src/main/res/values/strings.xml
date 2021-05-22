@@ -6,6 +6,9 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="no_network">Make sure you are connected to the internet</string>
+    <string name="no_fav_1">Didn\'t like any of our stuff, eh?</string>
+    <string name="no_fav_2">Show us</string>
+    <string name="no_fav_3">what you got!</string>
 
     <string name="cat_helix">HELIXIOS exclusive</string>
     <string name="cat_mirage">MIRAGE exclusive</string>

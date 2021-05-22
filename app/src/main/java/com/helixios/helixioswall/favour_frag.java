@@ -1,6 +1,7 @@
 package com.helixios.helixioswall;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.helixios.helixioswall.adapters.RecyclerViewAdapter;
 import com.helixios.helixioswall.adapters.RecyclerViewAdapterFavourite;
@@ -37,10 +40,12 @@ public class favour_frag extends Fragment implements RecyclerViewAdapter.OnPhoto
     private String mParam2;
 
     private RecyclerView mRecyclerView;
+    private LinearLayout no_fav;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerViewAdapterFavourite mFaveAdapter;
     private SwipeRefreshLayout refreshFav;
     private ArrayList<Photo> mPhotoList;
+    private TextView show_us;
 
     public favour_frag() {
         // Required empty public constructor
@@ -80,6 +85,7 @@ public class favour_frag extends Fragment implements RecyclerViewAdapter.OnPhoto
         View v = inflater.inflate(R.layout.fragment_favour, container, false);
 
         mRecyclerView = v.findViewById(R.id.recycler_view_fave);
+        no_fav = v.findViewById(R.id.no_fav);
         refreshFav = v.findViewById(R.id.swipeRefresh_fav);
         mLayoutManager = new GridLayoutManager(getActivity(),3);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -95,6 +101,12 @@ public class favour_frag extends Fragment implements RecyclerViewAdapter.OnPhoto
             continue;
         }
         mFaveAdapter.notifyDataSetChanged();
+        if(mFaveAdapter.getItemCount()==0) {
+            no_fav.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.GONE);
+            show_us = v.findViewById(R.id.show_us);
+            show_us.setOnClickListener(view -> gotoUrl("https://www.flickr.com/groups/14741456@N25/discuss/72157719228128509/"));
+        }
 
         refreshFav.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -111,10 +123,15 @@ public class favour_frag extends Fragment implements RecyclerViewAdapter.OnPhoto
                     continue;
                 }
                 mFaveAdapter.notifyDataSetChanged();
+                if(mFaveAdapter.getItemCount()==0) {
+                    no_fav.setVisibility(View.VISIBLE);
+                    mRecyclerView.setVisibility(View.GONE);
+                    show_us = v.findViewById(R.id.show_us);
+                    show_us.setOnClickListener(view -> gotoUrl("https://www.flickr.com/groups/14741456@N25/discuss/72157719228128509/"));
+                }
                 refreshFav.setRefreshing(false);
             }
         });
-
         return v;
     }
 
@@ -129,6 +146,12 @@ public class favour_frag extends Fragment implements RecyclerViewAdapter.OnPhoto
             continue;
         }
         mFaveAdapter.notifyDataSetChanged();
+        if(mFaveAdapter.getItemCount()==0) {
+            no_fav.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.GONE);
+            show_us = getView().findViewById(R.id.show_us);
+            show_us.setOnClickListener(view -> gotoUrl("https://www.flickr.com/groups/14741456@N25/discuss/72157719228128509/"));
+        }
         super.onResume();
     }
 
@@ -138,5 +161,10 @@ public class favour_frag extends Fragment implements RecyclerViewAdapter.OnPhoto
         Intent intent = new Intent(imageView.getContext(), PhotoActivity.class);
         intent.putExtra("photo", mPhotoList.get(position));
         startActivity(intent);
+    }
+
+    private void gotoUrl(String url) {
+        Uri uri = Uri.parse(url);
+        startActivity(new Intent(Intent.ACTION_VIEW,uri));
     }
 }
