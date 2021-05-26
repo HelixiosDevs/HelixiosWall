@@ -1,11 +1,11 @@
 package com.helixios.helixioswall;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,17 +16,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.helixios.helixioswall.database.HelixDatabase;
 import com.helixios.helixioswall.ui.main.SectionsPagerAdapter;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageView logo;
     SectionsPagerAdapter sectionsPagerAdapter;
     TabLayout tabs;
+//    ReviewManager manager;
+//    private SharedPreferences prefs;
+//    private SharedPreferences.Editor editor;
+//    private int totalCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,33 @@ public class MainActivity extends AppCompatActivity {
         logo.setVisibility(View.VISIBLE);
         View shadow = findViewById(R.id.dropshadow_main);
         //Picasso.get().load("https://farm66.staticflickr.com/65535/51157530838_c51d02b22b.jpg").into(logo);
+
+//        manager = ReviewManagerFactory.create(MainActivity.this);
+
+//        Log.d("counter2", "onCreate: "+reviewInfo.toString());
+//        prefs = getPreferences(Context.MODE_PRIVATE);
+//        editor = prefs.edit();
+//        totalCount = prefs.getInt("counter", 0);
+//        totalCount++;
+//        editor.putInt("counter", totalCount);
+//        editor.apply();
+//        Log.d("counter", "onCreate: "+totalCount);
+//        if((totalCount+2)%4 ==0  ) {
+////            Task<ReviewInfo> request = manager.requestReviewFlow();
+////            request.addOnCompleteListener(task -> {
+////                if (task.isSuccessful()) {
+////                    // We can get the ReviewInfo object
+////                    reviewInfo[0] = task.getResult();
+////                    Task<Void> flow = manager.launchReviewFlow(MainActivity.this, reviewInfo[0]);
+////                    flow.addOnSuccessListener(result -> {
+////                    });
+////                        // The flow has finished. The API does not indicate whether the user
+////                        // reviewed or not, or even whether the review dialog was shown. Thus, no
+////                        // matter the result, we continue our app flow.
+////                }
+////            });
+//            Log.d("counter", "onCreate: mod4");
+//        }
 
         Fade fade = new Fade();
         View decor = getWindow().getDecorView();
