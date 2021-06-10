@@ -130,22 +130,27 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
                 cat_logo.setImageResource(R.drawable.helixios_excl);
                 appBar_Cat.setBackgroundResource(R.drawable.cat_top_helixios);
                 break;
-            case "Mirage":
-                cat_logo.setImageResource(R.drawable.mirage_excl);
-                appBar_Cat.setBackgroundResource(R.drawable.cat_top_mirage);
-                break;
-            case "Light":
+//            case "Mirage":
+//                cat_logo.setImageResource(R.drawable.mirage_excl);
+//                appBar_Cat.setBackgroundResource(R.drawable.cat_top_mirage);
+//                break;
+            case "Natural":
                 cat_logo.setVisibility(View.GONE);
                 cat_text.setVisibility(View.VISIBLE);
                 cat_text.setText(category);
-                appBar_Cat.setBackgroundResource(R.drawable.light_top_shade);
-                cat_text.setTextColor(getResources().getColor(R.color.black,getTheme()));
+                appBar_Cat.setBackgroundResource(R.drawable.natural_cat_top);
                 break;
-            case "Dark":
-                cat_logo.setVisibility(View.GONE);
-                cat_text.setVisibility(View.VISIBLE);
-                cat_text.setText(category);
-                appBar_Cat.setBackgroundResource(R.drawable.dark_top_shade);
+//            case "Dark":
+//                cat_logo.setVisibility(View.GONE);
+//                cat_text.setVisibility(View.VISIBLE);
+//                cat_text.setText(category);
+//                appBar_Cat.setBackgroundResource(R.drawable.dark_top_shade);
+//                break;
+            case "Cyberpunk":
+                cat_logo.setImageResource(R.drawable.cyberpunk_lg);
+                break;
+            case "Assassins' Creed":
+                cat_logo.setImageResource(R.drawable.ac_lg);
                 break;
             case "Control":
                 cat_logo.setImageResource(R.drawable.control_lg);
@@ -156,26 +161,53 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
             case "Trackmania":
                 cat_logo.setImageResource(R.drawable.trackmania_lg);
                 break;
-            case "Borderlands":
-                cat_logo.setImageResource(R.drawable.borderlands_lg);
+            case "Assetto Corsa":
+                cat_logo.setImageResource(R.drawable.assetto_lg);
+                break;
+//            case "Half - Life":
+//                cat_logo.setImageResource(R.drawable.halflife_lg);
+//                break;
+            case "Inside":
+                cat_logo.setImageResource(R.drawable.inside_lg);
+                break;
+            case "Nier:Automata":
+                cat_logo.setImageResource(R.drawable.nier_lg);
                 break;
             case "Death Stranding":
                 cat_logo.setImageResource(R.drawable.deathstrand_lg);
                 break;
-            case "Nier:Automata":
-                cat_logo.setImageResource(R.drawable.nier_lg);
+            case "Hades":
+                cat_logo.setImageResource(R.drawable.hades_lg);
+                break;
+            case "Witcher":
+                cat_logo.setImageResource(R.drawable.witcher_lg);
+                break;
+            case "Star Citizen":
+                cat_logo.setImageResource(R.drawable.starcitizen_lg);
+                break;
+            case "God Of War":
+                cat_logo.setImageResource(R.drawable.godwar_lg);
+                break;
+            case "Horizon":
+                cat_logo.setImageResource(R.drawable.horizon_lg);
+                break;
+            case "Borderlands":
+                cat_logo.setImageResource(R.drawable.borderlands_lg);
+                break;
+            case "Uncharted":
+                cat_logo.setImageResource(R.drawable.uncharted_lg);
+                break;
+            case "Spiderman":
+                cat_logo.setImageResource(R.drawable.spiderman_lg);
+                break;
+            case "GTA":
+                cat_logo.setImageResource(R.drawable.gta_lg);
                 break;
             case "WatchDogs":
                 cat_logo.setImageResource(R.drawable.watchdogs_lg);
                 break;
             case "Just Cause":
                 cat_logo.setImageResource(R.drawable.justcause_lg);
-                break;
-            case "Half - Life":
-                cat_logo.setImageResource(R.drawable.halflife_lg);
-                break;
-            case "Inside":
-                cat_logo.setImageResource(R.drawable.inside_lg);
                 break;
         }
 

@@ -10,22 +10,35 @@
     <string name="no_fav_2">Show us</string>
     <string name="no_fav_3">what you got!</string>
 
+    <string name="cat_title">CATEGORIES</string>
+    
     <string name="cat_helix">HELIXIOS exclusive</string>
-    <string name="cat_mirage">MIRAGE exclusive</string>
-    <string name="cat_light">Light</string>
-    <string name="cat_dark">Dark</string>
-    <string name="cat_land">LANDSCAPE adjusted</string>
+    <string name="cat_mirage">-deprecated- MIRAGE exclusive</string>
+    <string name="cat_natural">Natural</string>
+    <string name="cat_light">-deprecated- Light</string>
+    <string name="cat_dark">-deprecated- Dark</string>
+    <string name="cat_land">-deprecated- LANDSCAPE adjusted</string>
     <string name="cat_forza">FORZA</string>
     <string name="cat_track">TRACKMANIA</string>
-    <string name="cat_bord">BORDERLANDS</string>
+    <string name="cat_border">BORDERLANDS</string>
     <string name="cat_ds">DEATH STRANDING</string>
     <string name="cat_nier">NIER:AUTOMATA</string>
     <string name="cat_watdg">WATCH DOGS</string>
     <string name="cat_jc">JUST CAUSE</string>
-    <string name="cat_half">HALF - LIFE</string>
+    <string name="cat_half">-deprecated- HALF - LIFE</string>
     <string name="cat_insi">INSIDE</string>
     <string name="cat_control">Control</string>
-    <string name="cat_title">CATEGORIES</string>
+    <string name="cat_cyber">Cyberpunk</string>
+    <string name="cat_hades">Hades</string>
+    <string name="cat_assassin">Assassins\' Creed</string>
+    <string name="cat_starctz">Star Citizen</string>
+    <string name="cat_gta">GTA V</string>
+    <string name="cat_assetto">Assetto Corsa</string>
+    <string name="cat_spiderman">Spiderman</string>
+    <string name="cat_uncharted">Uncharted</string>
+    <string name="cat_horizon">Horizon Zero Dawn</string>
+    <string name="cat_witcher">The Witcher</string>
+    <string name="cat_godwar">God of War</string>
 
     <string name="about_dev">Helixios eSports is the unofficial gaming club of IET, Lucknow. We also engage in providing tech tips and stunner gaming screenshots to all the enthusiasts out there.</string>
     <string name="about_app">Helixios Wallpapers App - curates all the amazing in-game screenshots, and stunning pictures captured by the members of Mirage, the official photography club of IET, and brings them straight to your phone\'s backdrop.</string>
