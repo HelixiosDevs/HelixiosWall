@@ -33,7 +33,6 @@
             android:id="@+id/recycler_view_cat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="15dp"
             android:paddingHorizontal="4dp"
             android:scrollbars="vertical" />
 
@@ -98,13 +97,17 @@
                 app:srcCompat="@drawable/heli_ico" />
             <TextView
                 android:id="@+id/cat_text"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
                 android:fontFamily="@font/lemonmilk_reg"
                 android:textSize="40sp"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:layout_width="205dp"
-                android:layout_height="60dp"
                 android:layout_marginBottom="30dp"
+                android:shadowColor="#54000000"
+                android:shadowDx="0"
+                android:shadowDy="3"
+                android:shadowRadius="8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

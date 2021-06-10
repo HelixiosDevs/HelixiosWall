@@ -65,6 +65,7 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
         mPhotoList = new ArrayList<>();
         mCatAdapter = new RecyclerViewCategoryAdapter(this,mPhotoList,this);
         mRecyclerView.setAdapter(mCatAdapter);
+        refreshCat.setRefreshing(true);
 
         flickrApi = RetrofitClient.getClient().create(FlickrApi.class);
         Call<SearchPhotos> call = flickrApi.getCategoryPhotos(tags,user_id);
@@ -91,6 +92,7 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
                 //Collections.sort(mPhotoList,compareByRatio);
                 Log.d("foto5","working");
                 mCatAdapter.notifyDataSetChanged();
+                refreshCat.setRefreshing(false);
             }
 
             @Override
@@ -146,10 +148,10 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
 //                cat_text.setText(category);
 //                appBar_Cat.setBackgroundResource(R.drawable.dark_top_shade);
 //                break;
-            case "Cyberpunk":
+            case "Cyberpunk 2077":
                 cat_logo.setImageResource(R.drawable.cyberpunk_lg);
                 break;
-            case "Assassins' Creed":
+            case "Assassins Creed":
                 cat_logo.setImageResource(R.drawable.ac_lg);
                 break;
             case "Control":
@@ -169,6 +171,7 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
 //                break;
             case "Inside":
                 cat_logo.setImageResource(R.drawable.inside_lg);
+                cat_logo.setPadding(16,16,16,16);
                 break;
             case "Nier:Automata":
                 cat_logo.setImageResource(R.drawable.nier_lg);

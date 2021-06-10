@@ -155,12 +155,12 @@ public class category_frag extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.card_Assassin:
-                tags = "assassin";
+                tags = "assassinscreed";
                 user_id = null;
-                cat = "Assassin's Creed";
+                cat = "Assassins Creed";
                 break;
             case R.id.card_Control:
-                tags ="control";
+                tags ="controlgame";
                 user_id = null;
                 cat = "Control";
                 break;
@@ -200,7 +200,7 @@ public class category_frag extends Fragment implements View.OnClickListener {
                 cat = "Witcher";
                 break;
             case R.id.card_Starctz:
-                tags = "star_citizen";
+                tags = "starcitizen";
                 user_id = null;
                 cat = "Star Citizen";
                 break;
@@ -210,7 +210,7 @@ public class category_frag extends Fragment implements View.OnClickListener {
                 cat = "God Of War";
                 break;
             case R.id.card_Horizon:
-                tags = "horizon_dawn";
+                tags = "horizongame";
                 user_id = null;
                 cat = "Horizon";
                 break;
@@ -230,7 +230,7 @@ public class category_frag extends Fragment implements View.OnClickListener {
                 cat = "Spiderman";
                 break;
             case R.id.card_Inside:
-                tags = "inside";
+                tags = "insidegame";
                 user_id = null;
                 cat = "Inside";
                 break;
