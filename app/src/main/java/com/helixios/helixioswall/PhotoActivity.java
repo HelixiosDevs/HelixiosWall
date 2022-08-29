@@ -1,5 +1,6 @@
 package com.helixios.helixioswall;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
@@ -15,6 +16,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -34,6 +36,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.helixios.helixioswall.database.HelixDatabase;
 import com.helixios.helixioswall.model.Photo;
@@ -96,26 +103,43 @@ public class PhotoActivity extends AppCompatActivity {
 
         if (photo.getUrl_o()==null) {
             //b type img is 1024px long edge(unrestricted best quality)
-            url = "https://farm" + photo.getFarm() + ".staticflickr.com/" + photo.getServer() + "/" + photo.getId() + "_" + photo.getSecret() + "_b.jpg";
+            url = "https://live.staticflickr.com/"+ photo.getServer() +"/"+ photo.getSecret() +"_"+ photo.getSecret() +"_b.jpg";
         }
         else {
             url = photo.getUrl_o();
         }
         imageName = "HW_Assets_"+photo.getId()+".jpg";
-        Picasso.get().load(url).into(imageView, new Callback() {
+        Glide.with(getApplicationContext()).load(url).listener(new RequestListener<Drawable>() {
             @Override
-            public void onSuccess() {
-                //View
-                preloader_photo.setVisibility(View.GONE);
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                 ActivityCompat.startPostponedEnterTransition(PhotoActivity.this);
+                Log.e("Error", e.getMessage() );
+                Log.d("Error", "onError: "+url);
+                return false;
             }
 
             @Override
-            public void onError(Exception e) {
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                preloader_photo.setVisibility(View.GONE);
                 ActivityCompat.startPostponedEnterTransition(PhotoActivity.this);
-                Log.e("Error", e.getMessage() );
+                return false;
             }
-        });
+        }).into(imageView);
+//        Picasso.get().load(url).into(imageView, new Callback() {
+//            @Override
+//            public void onSuccess() {
+//                //View
+//                preloader_photo.setVisibility(View.GONE);
+//                ActivityCompat.startPostponedEnterTransition(PhotoActivity.this);
+//            }
+//
+//            @Override
+//            public void onError(Exception e) {
+//                ActivityCompat.startPostponedEnterTransition(PhotoActivity.this);
+//                Log.e("Error", e.getMessage() );
+//                Log.d("Error", "onError: "+url);
+//            }
+//        });
 
         textView.setText("By "+photo.getOwner_name());
 

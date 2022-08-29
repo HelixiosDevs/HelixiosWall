@@ -1,6 +1,7 @@
 package com.helixios.helixioswall.adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.helixios.helixioswall.R;
 import com.helixios.helixioswall.model.Photo;
 import com.squareup.picasso.Callback;
@@ -19,6 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerViewAdapterFavourite extends RecyclerView.Adapter<RecyclerViewAdapterFavourite.FaveViewHolder> {
@@ -55,19 +62,36 @@ public class RecyclerViewAdapterFavourite extends RecyclerView.Adapter<RecyclerV
         LottieAnimationView anim_preloader = holder.itemView.findViewById(R.id.animation_preloader_fave);
         LinearLayout lin_anim = holder.itemView.findViewById(R.id.lin_anim_fave);
         anim_preloader.setVisibility(View.VISIBLE);
-        Picasso.get().load(url_z).fit().centerCrop().into(holder.mImageView, new Callback() {
+        Glide.with(mContext).load(url_z).fitCenter().centerCrop().listener(new RequestListener<Drawable>() {
             @Override
-            public void onSuccess() {
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                Log.e("foto6", String.valueOf(e));
+                Log.d("foto6", url_z);
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                 anim_preloader.setVisibility(View.GONE);
                 holder.mImageView.setVisibility(View.VISIBLE);
                 lin_anim.setVisibility(View.GONE);
+                Log.d("foto6", "onSuccess: animation"+String.valueOf(holder.mImageView.getVisibility()));
+                return false;
             }
-
-            @Override
-            public void onError(Exception e) {
-
-            }
-        });
+        }).into(holder.mImageView);
+//        Picasso.get().load(url_z).fit().centerCrop().into(holder.mImageView, new Callback() {
+//            @Override
+//            public void onSuccess() {
+//                anim_preloader.setVisibility(View.GONE);
+//                holder.mImageView.setVisibility(View.VISIBLE);
+//                lin_anim.setVisibility(View.GONE);
+//            }
+//
+//            @Override
+//            public void onError(Exception e) {
+//
+//            }
+//        });
 
     }
 
