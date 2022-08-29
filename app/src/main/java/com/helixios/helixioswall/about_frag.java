@@ -77,13 +77,13 @@ public class about_frag extends Fragment {
         Button rate = view.findViewById(R.id.button);
         Button contribute = view.findViewById(R.id.button2);
 
-        helix_url.setOnClickListener(view1 -> gotoUrl("http://www.helixios-esports.tech/"));
+        helix_url.setOnClickListener(view1 -> gotoUrl("https://www.helixios.tech/"));
         insta_url.setOnClickListener(view12 -> gotoUrl("https://www.instagram.com/helixios.esports/"));
-        facebook_url.setOnClickListener(view13 -> gotoUrl("https://www.facebook.com/helixios.corp"));
+        facebook_url.setOnClickListener(view13 -> gotoUrl("https://www.facebook.com/helixios.esports"));
         youtube_url.setOnClickListener(view14 -> gotoUrl("https://www.youtube.com/HelixiosCorp"));
         tele_url.setOnClickListener(view15 -> gotoUrl("https://t.me/helixiosesports"));
         discord_url.setOnClickListener(view16 -> gotoUrl("https://discord.com/invite/tpNjxdr"));
-        linkedin_dt.setOnClickListener(view17 -> gotoUrl("https://www.linkedin.com/in/divyansh-tripathi-in/"));
+        linkedin_dt.setOnClickListener(view17 -> gotoUrl("https://www.linkedin.com/in/divyansh-in/"));
         linkedin_ac.setOnClickListener(view18 -> gotoUrl("https://www.linkedin.com/in/aditya-chaudhary-50a680a6/"));
         contribute.setOnClickListener(view19 -> gotoUrl("https://www.flickr.com/groups/14741456@N25/discuss/72157719228128509/"));
         rate.setOnClickListener(view110 -> gotoUrl("https://play.google.com/store/apps/details?id=com.helixios.helixioswall"));
