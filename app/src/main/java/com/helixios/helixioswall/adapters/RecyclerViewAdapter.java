@@ -18,14 +18,8 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.helixios.helixioswall.R;
 import com.helixios.helixioswall.model.Photo;
-import com.helixios.helixioswall.model.SearchPhotos;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
@@ -82,21 +76,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         }).into(holder.mImageView);
 
-//        Picasso.get().load(url_z).fit().centerCrop().into(holder.mImageView, new Callback() {
-//            @Override
-//            public void onSuccess() {
-//                anim_preloader.setVisibility(View.GONE);
-//                holder.mImageView.setVisibility(View.VISIBLE);
-//                lin_anim.setVisibility(View.GONE);
-//                Log.d("foto6", "onSuccess: animation"+String.valueOf(holder.mImageView.getVisibility()));
-//            }
-//
-//            @Override
-//            public void onError(Exception e) {
-//                Log.e("foto6", String.valueOf(e));
-//                Log.d("foto6", url_z);
-//            }
-//        });
     }
 
     @Override

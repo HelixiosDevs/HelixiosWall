@@ -17,8 +17,6 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.helixios.helixioswall.R;
 import com.helixios.helixioswall.model.Photo;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -78,19 +76,7 @@ public class RecyclerViewCategoryAdapter extends RecyclerView.Adapter<RecyclerVi
                 return false;
             }
         }).into(holder.mImageView);
-//        Picasso.get().load(url_z).fit().centerCrop().into(holder.mImageView, new Callback() {
-//            @Override
-//            public void onSuccess() {
-//                Log.i("pixi", "onSuccess: "+position);
-//                anim_preloader.setVisibility(View.GONE);
-//                holder.mImageView.setVisibility(View.VISIBLE);
-//                lin_anim.setVisibility(View.GONE);
-//            }
-//
-//            @Override
-//            public void onError(Exception e) {
-//            }
-//        });
+
     }
 
     @Override

@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,12 +15,8 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.helixios.helixioswall.model.Photo;
-import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImageView;
-
 import java.io.IOException;
-import java.util.function.DoubleToIntFunction;
 
 public class CropActivity extends AppCompatActivity {
 
@@ -37,8 +31,6 @@ public class CropActivity extends AppCompatActivity {
         CropImageView cropView = findViewById(R.id.cropView);
         TextView cropText = findViewById(R.id.text_crop);
 
-//        int width = WallpaperManager.getInstance(this).getDesiredMinimumWidth();
-//        int height = WallpaperManager.getInstance(this).getDesiredMinimumHeight();
         DisplayMetrics displayMetrics = new DisplayMetrics();
         WindowManager windowmanager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowmanager.getDefaultDisplay().getMetrics(displayMetrics);

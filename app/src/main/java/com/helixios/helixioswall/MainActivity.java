@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         logo = (ImageView) findViewById(R.id.logo_1);
         logo.setVisibility(View.VISIBLE);
         View shadow = findViewById(R.id.dropshadow_main);
-        //Picasso.get().load("https://farm66.staticflickr.com/65535/51157530838_c51d02b22b.jpg").into(logo);
 
 //        manager = ReviewManagerFactory.create(MainActivity.this);
 

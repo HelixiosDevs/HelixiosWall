@@ -45,8 +45,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.helixios.helixioswall.database.HelixDatabase;
 import com.helixios.helixioswall.model.Photo;
 import com.helixios.helixioswall.networking.DownloadBroadcastReceiver;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
+
 
 import java.io.File;
 
@@ -125,21 +124,6 @@ public class PhotoActivity extends AppCompatActivity {
                 return false;
             }
         }).into(imageView);
-//        Picasso.get().load(url).into(imageView, new Callback() {
-//            @Override
-//            public void onSuccess() {
-//                //View
-//                preloader_photo.setVisibility(View.GONE);
-//                ActivityCompat.startPostponedEnterTransition(PhotoActivity.this);
-//            }
-//
-//            @Override
-//            public void onError(Exception e) {
-//                ActivityCompat.startPostponedEnterTransition(PhotoActivity.this);
-//                Log.e("Error", e.getMessage() );
-//                Log.d("Error", "onError: "+url);
-//            }
-//        });
 
         textView.setText("By "+photo.getOwner_name());
 
