@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Landscape: cropper on the left, controls in a side panel so the image keeps its height -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/crop_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/off_black"
+    android:orientation="horizontal">
+
+    <com.canhub.cropper.CropImageView
+        android:id="@+id/cropView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:cropShowProgressBar="true" />
+
+    <ScrollView
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:background="#861C2634">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_crop"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="Crop Wallpaper"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <include layout="@layout/crop_controls" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

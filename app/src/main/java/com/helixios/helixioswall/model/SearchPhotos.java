@@ -9,6 +9,9 @@ public class SearchPhotos {
     @SerializedName("photos")
     private PhotosNest mPhotosNest;
     private String stat;
+    //Set when stat is "fail", e.g. 100 = invalid API key
+    private int code;
+    private String message;
 
     public SearchPhotos(PhotosNest photosNest, String stat) {
         mPhotosNest = photosNest;
@@ -29,6 +32,24 @@ public class SearchPhotos {
 
     public void setStat(String stat) {
         this.stat = stat;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    //Flickr reports API errors with HTTP 200 and stat "fail", so check before reading photos
+    public static boolean hasPhotos(SearchPhotos body) {
+        return body != null && "ok".equals(body.stat) && body.mPhotosNest != null
+                && body.mPhotosNest.getPhotos_list() != null;
+    }
+
+    public static String describeError(SearchPhotos body) {
+        return body == null ? "empty response" : "Flickr error " + body.code + ": " + body.message;
     }
 
     public static final class PhotosNest {

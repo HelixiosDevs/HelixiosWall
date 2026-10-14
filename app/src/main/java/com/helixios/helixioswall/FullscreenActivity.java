@@ -2,37 +2,24 @@ package com.helixios.helixioswall;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.TimeInterpolator;
 import android.annotation.SuppressLint;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.transition.ChangeBounds;
-import android.transition.Explode;
 import android.transition.Fade;
-import android.transition.Slide;
-import android.transition.Transition;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 
-import java.io.IOException;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -123,6 +110,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         setTheme(R.style.Theme_HelixiosWall_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
@@ -153,59 +141,6 @@ public class FullscreenActivity extends AppCompatActivity {
                 startActivity(main_page,options.toBundle());
             }
         });
-
-        // Set up the user interaction to manually show or hide the system UI.
-
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-
-//        if(!isOnline()) {
-//            Toast.makeText(this, "Make sure your device is connected to Internet",Toast.LENGTH_LONG).show();
-//            while(!isOnline()) {
-//                continue;
-//            }
-//            Log.d("anim", "onCreate: "+isOnline());
-//            anim_logo.setVisibility(View.GONE);
-//            logo.setVisibility(View.VISIBLE);
-//            logo.callOnClick();
-//        }
-//        boolean val = false;
-//        Thread t1 = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Log.d("anim", "run: "+isOnline());
-//                while(!isOnline()) {
-//                    Log.d("anim", "run-2: "+isOnline());
-//                    continue;
-//                }
-//                boolean val = isOnline();
-//                Log.d("anim", "run-3: "+isOnline());
-//            }
-//        });
-//        t1.start();
-//        while(t1.isAlive()) {
-//            continue;
-//        }
-//        if(val) {
-//            anim_logo.setVisibility(View.GONE);
-//            logo.setVisibility(View.VISIBLE);
-//            logo.callOnClick();
-//        }
-
-//        final Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                // Do something after 5s = 5000ms
-//                anim_logo.setRepeatCount(0);
-//                anim_logo.playAnimation();
-//            }
-//        }, 500);
-
-//        anim_logo.setRepeatCount(0);
-//        anim_logo.playAnimation();
         anim_logo.addAnimatorListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {

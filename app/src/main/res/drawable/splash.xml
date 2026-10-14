@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Plain black behind the splash layout. The background image lives in activity_fullscreen
+     (centerCrop), so it fills the screen in any orientation; a bitmap here was drawn at its
+     natural size and showed as bands while the content faded in. -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:opacity="opaque">
-    <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/background"
-            android:tint="#161e2a"
-            android:tintMode="add"
-            android:alpha="0.15"
-            />
-    </item>
+    <item android:drawable="@color/black" />
 
 </layer-list>

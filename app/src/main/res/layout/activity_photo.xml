@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/photo_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
@@ -12,7 +13,6 @@
         android:layout_height="35dp"
         android:layout_gravity="center"
         app:lottie_rawRes="@raw/pre_loader"
-        app:lottie_scale="0.2"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         android:visibility="visible"/>
@@ -33,6 +33,7 @@
         app:srcCompat="@drawable/back_arrow" />
 
     <LinearLayout
+        android:id="@+id/bottom_controls_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

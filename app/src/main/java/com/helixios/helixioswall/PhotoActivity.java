@@ -1,35 +1,30 @@
 package com.helixios.helixioswall;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
-import androidx.room.Database;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import android.Manifest;
 import android.app.DownloadManager;
-import android.app.WallpaperManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.transition.ChangeBounds;
-import android.transition.Explode;
-import android.transition.Fade;
-import android.transition.Slide;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -41,7 +36,6 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.helixios.helixioswall.database.HelixDatabase;
 import com.helixios.helixioswall.model.Photo;
 import com.helixios.helixioswall.networking.DownloadBroadcastReceiver;
@@ -60,8 +54,23 @@ public class PhotoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.photo_root), (v, windowInsets) -> {
+            Insets systemBars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, 0, systemBars.right, 0);
+            
+            // Adjust back button margin for status bar
+            View backButton = findViewById(R.id.back_button);
+            FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) backButton.getLayoutParams();
+            lp.topMargin = (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 22, getResources().getDisplayMetrics()) + systemBars.top);
+            backButton.setLayoutParams(lp);
+
+            findViewById(R.id.bottom_controls_container).setPadding(0, 0, 0, systemBars.bottom);
+            return windowInsets;
+        });
 
         // Postpone the shared element enter transition.
         //postponeEnterTransition();
@@ -77,37 +86,17 @@ public class PhotoActivity extends AppCompatActivity {
         LinearLayout downloadClick = findViewById(R.id.down_click);
         LinearLayout shareClick = findViewById(R.id.share_click);
         LinearLayout faveClick = findViewById(R.id.fave_click);
-//        FloatingActionButton FaveFab = findViewById(R.id.fab_fave);
-//        FloatingActionButton shareFab = findViewById(R.id.fab_share);
-        Photo photo = null;
-        String url;
-
-        if(getIntent().hasExtra("photo")) {
-            photo = getIntent().getParcelableExtra("photo");
-        }
-        else {
+        Photo photo = getIntent().getParcelableExtra("photo");
+        if (photo == null) {
             finish();
+            return;
         }
 
-//        Explode explode = new Explode();
-//        View decor = getWindow().getDecorView();
-//        explode.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
-//        explode.excludeTarget(android.R.id.statusBarBackground, true);
-//        explode.excludeTarget(android.R.id.navigationBarBackground, true);
-//        explode.excludeTarget(imageView,true);
-//        explode.setDuration(500);
-//        getWindow().setEnterTransition(explode);
-//        getWindow().setExitTransition(explode);
-//        getWindow().setSharedElementEnterTransition(new ChangeBounds().setDuration(1000));
-
-        if (photo.getUrl_o()==null) {
-            //b type img is 1024px long edge(unrestricted best quality)
-            url = "https://live.staticflickr.com/"+ photo.getServer() +"/"+ photo.getSecret() +"_"+ photo.getSecret() +"_b.jpg";
-        }
-        else {
-            url = photo.getUrl_o();
-        }
-        imageName = "HW_Assets_"+photo.getId()+".jpg";
+        //Show up to 1024px on screen; download the largest size Flickr lets this key access
+        String url = photo.getDisplayUrl();
+        down_url = photo.getBestDownloadUrl();
+        String extension = down_url.substring(down_url.lastIndexOf('.'));
+        imageName = "HW_Assets_"+photo.getId()+extension;
         Glide.with(getApplicationContext()).load(url).listener(new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -127,7 +116,7 @@ public class PhotoActivity extends AppCompatActivity {
 
         textView.setText("By "+photo.getOwner_name());
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE);
             }
@@ -135,7 +124,6 @@ public class PhotoActivity extends AppCompatActivity {
 
         //getWindow().setSharedElementEnterTransition(new ChangeBounds().addTarget(imageView).setStartDelay(800).setDuration(1000));
 
-        down_url = photo.getUrl_o();
         Log.d("foto", "onCreate:"+photo.getOwner_name());
         downloadClick.setOnClickListener(v -> {
             downloadImage(down_url,imageName);
@@ -151,23 +139,24 @@ public class PhotoActivity extends AppCompatActivity {
         final boolean[] clicked = {false};
         final HelixDatabase[] Db = new HelixDatabase[1];
 
-        Thread thread = new Thread(() -> {
+        new Thread(() -> {
             Db[0] = HelixDatabase.getInstance(PhotoActivity.this);
 
             Photo foto2 = Db[0].favDao().getfaveStatus(finalPhoto.getId());
             if(foto2 != null ) {
                 if(finalPhoto.getId().equals(foto2.getId())) {
                     clicked[0]=true;
-                    add_fave.setImageResource(R.drawable.fav_icon_red);
-                    favText.setText("Added To Favourites");
+                    runOnUiThread(() -> {
+                        add_fave.setImageResource(R.drawable.fav_icon_red);
+                        favText.setText("Added To Favourites");
+                    });
                 }
             }
 
-        });
-        thread.start();
+        }).start();
 
         faveClick.setOnClickListener(view -> {
-            Thread thread2 = new Thread(() -> {
+            new Thread(() -> {
                 if(clicked[0]) {
                     Db[0].favDao().removeFavourite(finalPhoto.getId());
                     clicked[0] = false;
@@ -176,19 +165,17 @@ public class PhotoActivity extends AppCompatActivity {
                     Db[0].favDao().insert(finalPhoto);
                     clicked[0] = true;
                 }
-            });
-            thread2.start();
-            while(thread2.isAlive()){
-                continue;
-            }
-            if(clicked[0]) {
-                add_fave.setImageResource(R.drawable.fav_icon_red);
-                favText.setText("Added To Favourites");
-            }
-            else {
-                add_fave.setImageResource(R.drawable.fav_icon);
-                favText.setText("Add To Favourites");
-            }
+                runOnUiThread(() -> {
+                    if(clicked[0]) {
+                        add_fave.setImageResource(R.drawable.fav_icon_red);
+                        favText.setText("Added To Favourites");
+                    }
+                    else {
+                        add_fave.setImageResource(R.drawable.fav_icon);
+                        favText.setText("Add To Favourites");
+                    }
+                });
+            }).start();
         });
 
         shareClick.setOnClickListener(view -> {
@@ -214,15 +201,19 @@ public class PhotoActivity extends AppCompatActivity {
     public void setWallServe()
     {
         path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()+ File.separator + imageName;
-        Log.i("cop", String.valueOf(MediaStore.Images.Media.getContentUri(imageName)));
 
         Toast.makeText(this,"Downloading and setting wallpaper",Toast.LENGTH_LONG).show();
-//Moved this code to BroadcastReceiver to execute according to the download
-//        Uri uri = FileProvider.getUriForFile(this, "com.helixios.helixioswall.fileprovider", new File(path));
-//        Intent wallMan =WallpaperManager.getInstance(this).getCropAndSetWallpaperIntent(uri);
+        //The wallpaper is set from DownloadBroadcastReceiver once the download finishes
         try {
-            downReceiver = new DownloadBroadcastReceiver(path);
-            registerReceiver(downReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+            if (downReceiver != null) {
+                unregisterReceiver(downReceiver);
+            }
+            downReceiver = new DownloadBroadcastReceiver(path, down_id);
+            // DOWNLOAD_COMPLETE comes from the DownloadManager process, so the receiver must be
+            // exported; Android 14+ throws if the flag is missing.
+            ContextCompat.registerReceiver(this, downReceiver,
+                    new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE),
+                    ContextCompat.RECEIVER_EXPORTED);
         }
         catch (Exception e) {
             e.printStackTrace();

@@ -4,6 +4,7 @@ import com.helixios.helixioswall.model.Photo;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -18,7 +19,7 @@ public interface FavouriteDao {
     void insert(Photo photo);
 
     @Query("SELECT * FROM photo_table ORDER BY time DESC")
-    List<Photo> getFavourite();
+    LiveData<List<Photo>> getFavourite();
 
     @Query("DELETE FROM photo_table where id LIKE :photo_id")
     void removeFavourite(String photo_id);

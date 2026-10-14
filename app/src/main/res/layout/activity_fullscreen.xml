@@ -36,14 +36,15 @@
             app:srcCompat="@drawable/heli_ico"
         android:visibility="invisible"/>
 
+    <!-- Same size as heli_ico (272x70dp) so the last frame lines up with logo_1 for the
+         shared-element hand-off, and the splash fits in portrait and landscape alike -->
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="272dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
         app:lottie_rawRes="@raw/helixios_walls_reveal"
-        app:lottie_enableMergePathsForKitKatAndAbove="true"
-        app:lottie_scale="0.25" />
+        app:lottie_enableMergePathsForKitKatAndAbove="true" />
 
     <ImageView
         android:id="@+id/invisible"

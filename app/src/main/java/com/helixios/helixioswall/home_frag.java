@@ -1,6 +1,5 @@
 package com.helixios.helixioswall;
 
-import android.accounts.NetworkErrorException;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -8,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -20,17 +18,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import android.os.Parcelable;
 import android.transition.ChangeBounds;
-import android.transition.Explode;
 import android.transition.Fade;
-import android.transition.Slide;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityEventSource;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -40,9 +33,7 @@ import com.helixios.helixioswall.model.SearchPhotos;
 import com.helixios.helixioswall.networking.FlickrApi;
 import com.helixios.helixioswall.networking.RetrofitClient;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -140,8 +131,14 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
 //                    mPhotoList.addAll(pics.getPhotosNest().getPhotos_list());
 //                }
                 foto = response.body();
+                if (!SearchPhotos.hasPhotos(foto)) {
+                    Log.e("API", SearchPhotos.describeError(foto));
+                    no_net_home.setVisibility(View.VISIBLE);
+                    mRecyclerView.setVisibility(View.GONE);
+                    refreshHome.setRefreshing(false);
+                    return;
+                }
 
-                Log.d("foto", String.valueOf(foto.getPhotosNest().getPhotos_list().get(0).getUrl_z()));
                 mPhotoList.addAll(foto.getPhotosNest().getPhotos_list());
                 Log.i("foto", String.valueOf(mPhotoList.size()));
                 Collections.shuffle(mPhotoList);
@@ -168,11 +165,15 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
                     @Override
                     public void onResponse(Call<SearchPhotos> call, Response<SearchPhotos> response) {
                         foto = response.body();
+                        if (!SearchPhotos.hasPhotos(foto)) {
+                            Log.e("API", SearchPhotos.describeError(foto));
+                            refreshHome.setRefreshing(false);
+                            return;
+                        }
 
                         no_net_home.setVisibility(View.GONE);
                         mRecyclerView.setVisibility(View.VISIBLE);
 
-                        Log.d("foto", String.valueOf(foto.getPhotosNest().getPhotos_list().get(0).getUrl_z()));
                         mPhotoList.addAll(foto.getPhotosNest().getPhotos_list());
                         Log.i("foto", String.valueOf(mPhotoList.size()));
                         Collections.shuffle(mPhotoList);
@@ -246,18 +247,5 @@ public class home_frag extends Fragment implements RecyclerViewAdapter.OnPhotoLi
 //        else
 //            return 0;
 //    };
-    public boolean isOnline() {
-        Runtime runtime = Runtime.getRuntime();
-        try {
-            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
-            int     exitValue = ipProcess.waitFor();
-            Log.i("anim", "isOnline: value prob"+exitValue);
-            return (exitValue == 1);
-        }
-        catch (IOException e)          { e.printStackTrace(); }
-        catch (InterruptedException e) { e.printStackTrace(); }
-
-        return false;
-    }
 }
 
