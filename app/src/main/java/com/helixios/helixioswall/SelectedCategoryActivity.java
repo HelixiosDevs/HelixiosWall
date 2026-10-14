@@ -1,6 +1,10 @@
 package com.helixios.helixioswall;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -18,7 +22,6 @@ import android.widget.TextView;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.helixios.helixioswall.adapters.RecyclerViewAdapter;
-import com.helixios.helixioswall.adapters.RecyclerViewAdapterFavourite;
 import com.helixios.helixioswall.adapters.RecyclerViewCategoryAdapter;
 import com.helixios.helixioswall.model.Photo;
 import com.helixios.helixioswall.model.SearchPhotos;
@@ -41,8 +44,16 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_category);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.cat_root), (v, windowInsets) -> {
+            Insets systemBars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom);
+            findViewById(R.id.appbar_cat).setPadding(0, systemBars.top, 0, 0);
+            return windowInsets;
+        });
 
         String tags=null ,user_id=null, category=null;
         if(getIntent().hasExtra("TAGS") || getIntent().hasExtra("USER") || getIntent().hasExtra("CAT1")) {
@@ -84,8 +95,14 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
 //                    mPhotoList.addAll(pics.getPhotosNest().getPhotos_list());
 //                }
                 foto = response.body();
+                if (!SearchPhotos.hasPhotos(foto)) {
+                    Log.e("API", SearchPhotos.describeError(foto));
+                    no_net_cat.setVisibility(View.VISIBLE);
+                    mRecyclerView.setVisibility(View.GONE);
+                    refreshCat.setRefreshing(false);
+                    return;
+                }
 
-                //Log.d("foto", String.valueOf(foto.getPhotosNest().getPhotos_list().get(0).getUrl_z()));
                 mPhotoList.addAll(foto.getPhotosNest().getPhotos_list());
                 Log.i("foto", String.valueOf(mPhotoList.size()));
                 Collections.shuffle(mPhotoList);
@@ -109,6 +126,11 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Recyc
                 @Override
                 public void onResponse(Call<SearchPhotos> call1, Response<SearchPhotos> response) {
                     foto = response.body();
+                    if (!SearchPhotos.hasPhotos(foto)) {
+                        Log.e("API", SearchPhotos.describeError(foto));
+                        refreshCat.setRefreshing(false);
+                        return;
+                    }
 
                     mRecyclerView.setVisibility(View.VISIBLE);
                     no_net_cat.setVisibility(View.GONE);

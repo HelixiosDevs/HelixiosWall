@@ -21,7 +21,9 @@ import com.helixios.helixioswall.adapters.RecyclerViewAdapterFavourite;
 import com.helixios.helixioswall.database.HelixDatabase;
 import com.helixios.helixioswall.model.Photo;
 
+import androidx.lifecycle.Observer;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -93,42 +95,32 @@ public class favour_frag extends Fragment implements RecyclerViewAdapter.OnPhoto
         mFaveAdapter = new RecyclerViewAdapterFavourite(getContext(),mPhotoList,this);
         mRecyclerView.setAdapter(mFaveAdapter);
 
-        Thread thread = new Thread(() -> {
-            mPhotoList.addAll(HelixDatabase.getInstance(getContext()).favDao().getFavourite());
-        });
-        thread.start();
-        while (thread.isAlive()) {
-            continue;
-        }
-        mFaveAdapter.notifyDataSetChanged();
-        if(mFaveAdapter.getItemCount()==0) {
-            no_fav.setVisibility(View.VISIBLE);
-            mRecyclerView.setVisibility(View.GONE);
-            show_us = v.findViewById(R.id.show_us);
-            show_us.setOnClickListener(view -> gotoUrl("https://www.flickr.com/groups/14741456@N25/discuss/72157719228128509/"));
-        }
-
-        refreshFav.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        HelixDatabase.getInstance(getContext()).favDao().getFavourite().observe(getViewLifecycleOwner(), new Observer<List<Photo>>() {
             @Override
-            public void onRefresh() {
+            public void onChanged(List<Photo> photos) {
                 mPhotoList.clear();
-                Thread thread1 = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mPhotoList.addAll(HelixDatabase.getInstance(getContext()).favDao().getFavourite());
-                    }
-                });
-                thread1.start();
-                while(thread1.isAlive()) {
-                    continue;
+                if (photos != null) {
+                    mPhotoList.addAll(photos);
                 }
                 mFaveAdapter.notifyDataSetChanged();
-                if(mFaveAdapter.getItemCount()==0) {
+                if (mFaveAdapter.getItemCount() == 0) {
                     no_fav.setVisibility(View.VISIBLE);
                     mRecyclerView.setVisibility(View.GONE);
                     show_us = v.findViewById(R.id.show_us);
                     show_us.setOnClickListener(view -> gotoUrl("https://www.flickr.com/groups/14741456@N25/discuss/72157719228128509/"));
+                } else {
+                    no_fav.setVisibility(View.GONE);
+                    mRecyclerView.setVisibility(View.VISIBLE);
                 }
+                refreshFav.setRefreshing(false);
+            }
+        });
+
+        refreshFav.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // LiveData will automatically update if the database changes.
+                // We just stop the animation here.
                 refreshFav.setRefreshing(false);
             }
         });
@@ -137,21 +129,6 @@ public class favour_frag extends Fragment implements RecyclerViewAdapter.OnPhoto
 
     @Override
     public void onResume() {
-        mPhotoList.clear();
-        Thread thread = new Thread(() -> {
-            mPhotoList.addAll(HelixDatabase.getInstance(getContext()).favDao().getFavourite());
-        });
-        thread.start();
-        while (thread.isAlive()) {
-            continue;
-        }
-        mFaveAdapter.notifyDataSetChanged();
-        if(mFaveAdapter.getItemCount()==0) {
-            no_fav.setVisibility(View.VISIBLE);
-            mRecyclerView.setVisibility(View.GONE);
-            show_us = getView().findViewById(R.id.show_us);
-            show_us.setOnClickListener(view -> gotoUrl("https://www.flickr.com/groups/14741456@N25/discuss/72157719228128509/"));
-        }
         super.onResume();
     }
 

@@ -10,7 +10,6 @@ import org.jetbrains.annotations.NotNull;
 import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import retrofit2.http.Field;
 
 @Entity(tableName = "photo_table")
 public class Photo implements Parcelable {
@@ -60,6 +59,20 @@ public class Photo implements Parcelable {
     private String owner_name;
     @Nullable
     private String tags;
+    // Size URLs returned via the url_* extras. Flickr omits a size when the caller may not
+    // access it (owner preference, or Free-account photos above 1024px since May 2025).
+    @Nullable
+    private String url_z;
+    @Nullable
+    private String url_c;
+    @Nullable
+    private String url_l;
+    @Nullable
+    private String url_h;
+    @Nullable
+    private String url_k;
+
+    private static final String STATIC_HOST = "https://live.staticflickr.com/";
 
     public Photo(@Nullable String id, @Nullable String owner, @Nullable String secret, @Nullable String server, @Nullable Integer farm, @Nullable String title, @Nullable Integer ispublic, @Nullable Integer isfriend, @Nullable Integer isfamily, @Nullable String datetaken, @Nullable String iconserver, @Nullable Integer iconfarm, @Nullable String originalsecret, @Nullable String originalformat, @Nullable String url_o, @Nullable Integer height_o, @Nullable Integer width_o, int height_z, int width_z, @Nullable String owner_name, @Nullable String tags) {
         this.id = id;
@@ -135,6 +148,11 @@ public class Photo implements Parcelable {
         width_z = in.readInt();
         owner_name = in.readString();
         tags = in.readString();
+        url_z = in.readString();
+        url_c = in.readString();
+        url_l = in.readString();
+        url_h = in.readString();
+        url_k = in.readString();
     }
 
     public static final Creator<Photo> CREATOR = new Creator<Photo>() {
@@ -267,9 +285,72 @@ public class Photo implements Parcelable {
     public String getTags() {
         return tags;
     }
+    //Grid thumbnail, 640px on the longest edge
     @NotNull
-    public final String getUrl_z() {
-        return "https://farm" + this.farm + ".staticflickr.com/" + this.server + "/" + this.id + "_" + this.secret + ".jpg";
+    public String getUrl_z() {
+        return url_z != null ? url_z : buildStaticUrl("z");
+    }
+
+    public void setUrl_z(@Nullable String url_z) {
+        this.url_z = url_z;
+    }
+
+    @Nullable
+    public String getUrl_c() {
+        return url_c;
+    }
+
+    public void setUrl_c(@Nullable String url_c) {
+        this.url_c = url_c;
+    }
+
+    @Nullable
+    public String getUrl_l() {
+        return url_l;
+    }
+
+    public void setUrl_l(@Nullable String url_l) {
+        this.url_l = url_l;
+    }
+
+    @Nullable
+    public String getUrl_h() {
+        return url_h;
+    }
+
+    public void setUrl_h(@Nullable String url_h) {
+        this.url_h = url_h;
+    }
+
+    @Nullable
+    public String getUrl_k() {
+        return url_k;
+    }
+
+    public void setUrl_k(@Nullable String url_k) {
+        this.url_k = url_k;
+    }
+
+    //Image shown on the photo screen, at most 1024px, which is always accessible
+    @NotNull
+    public String getDisplayUrl() {
+        if (url_l != null) return url_l;
+        if (url_c != null) return url_c;
+        return buildStaticUrl("b");
+    }
+
+    //Largest image the API key may access, used for downloads and wallpapers
+    @NotNull
+    public String getBestDownloadUrl() {
+        if (url_o != null) return url_o;
+        if (url_k != null) return url_k;
+        if (url_h != null) return url_h;
+        return getDisplayUrl();
+    }
+
+    //Sizes below 1600px share the photo secret, so their URLs can be built without the extras
+    private String buildStaticUrl(String sizeSuffix) {
+        return STATIC_HOST + server + "/" + id + "_" + secret + "_" + sizeSuffix + ".jpg";
     }
 
     @Override
@@ -335,5 +416,10 @@ public class Photo implements Parcelable {
         dest.writeInt(width_z);
         dest.writeString(owner_name);
         dest.writeString(tags);
+        dest.writeString(url_z);
+        dest.writeString(url_c);
+        dest.writeString(url_l);
+        dest.writeString(url_h);
+        dest.writeString(url_k);
     }
 }

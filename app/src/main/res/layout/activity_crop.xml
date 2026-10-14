@@ -1,33 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/crop_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/off_black"
     android:orientation="vertical">
 
-    <com.theartofdev.edmodo.cropper.CropImageView
-        android:id="@+id/cropView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cropShowProgressBar="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/text_crop"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#861C2634">
-        <TextView
-            android:id="@+id/text_crop"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Crop and Set Image as Wallpaper"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:layout_gravity="center"
-            android:clickable="true"
-            android:gravity="center"/>
-    </LinearLayout>
+        android:background="#861C2634"
+        android:gravity="center"
+        android:text="Crop Wallpaper"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
+    <com.canhub.cropper.CropImageView
+        android:id="@+id/cropView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:cropShowProgressBar="true" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <include layout="@layout/crop_controls" />
+
+</LinearLayout>

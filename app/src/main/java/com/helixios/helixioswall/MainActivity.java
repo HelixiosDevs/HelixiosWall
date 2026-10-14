@@ -6,6 +6,11 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,8 +23,6 @@ import android.widget.ImageView;
 
 import com.helixios.helixioswall.ui.main.SectionsPagerAdapter;
 
-import java.io.IOException;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,8 +36,30 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainLayout), (v, windowInsets) -> {
+            Insets systemBars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom);
+            findViewById(R.id.appbar).setPadding(0, systemBars.top, 0, 0);
+            return windowInsets;
+        });
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if(tabs.getSelectedTabPosition() != 0)
+                {
+                    tabs.selectTab(tabs.getTabAt(0));
+                }
+                else{
+                    MainActivity.this.moveTaskToBack(true);
+                }
+            }
+        });
+
         logo = (ImageView) findViewById(R.id.logo_1);
         logo.setVisibility(View.VISIBLE);
         View shadow = findViewById(R.id.dropshadow_main);
@@ -120,31 +145,5 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
-    }
-
-    @Override
-    public void onBackPressed() {
-        if(tabs.getSelectedTabPosition() != 0)
-        {
-            //sectionsPagerAdapter.getItem(1);
-            tabs.selectTab(tabs.getTabAt(0));
-        }
-        else{
-            this.moveTaskToBack(true);
-            super.onBackPressed();
-        }
-    }
-    public boolean isOnline() {
-        Runtime runtime = Runtime.getRuntime();
-        try {
-            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
-            int     exitValue = ipProcess.waitFor();
-            Log.i("anim", "isOnline: value prob"+exitValue);
-            return (exitValue == 1);
-        }
-        catch (IOException e)          { e.printStackTrace(); }
-        catch (InterruptedException e) { e.printStackTrace(); }
-
-        return false;
     }
 }
